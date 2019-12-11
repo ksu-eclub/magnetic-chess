@@ -57,6 +57,7 @@
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
 <layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="88" name="SimResults" color="9" fill="1" visible="yes" active="yes"/>
@@ -64,19 +65,128 @@
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
-<layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
+<layer number="93" name="Pins" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="94" name="Symbols" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="95" name="Names" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="99" name="SpiceOrder" color="5" fill="1" visible="yes" active="yes"/>
+<layer number="200" name="200bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="250" name="Descript" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="251" name="SMDround" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <library>
 <packages>
+<package name="0805">
+<smd name="P$1" x="-0.9525" y="0" dx="1.2954" dy="0.7112" layer="1" rot="R90"/>
+<smd name="P$2" x="0.9525" y="0" dx="1.2954" dy="0.7112" layer="1" rot="R90"/>
+<text x="0" y="0.8636" size="0.254" layer="25" align="bottom-center">&gt;NAME</text>
+<wire x1="-1.524" y1="0.762" x2="1.524" y2="0.762" width="0.0762" layer="21"/>
+<wire x1="1.524" y1="0.762" x2="1.524" y2="-0.762" width="0.0762" layer="21"/>
+<wire x1="1.524" y1="-0.762" x2="-1.524" y2="-0.762" width="0.0762" layer="21"/>
+<wire x1="-1.524" y1="-0.762" x2="-1.524" y2="0.762" width="0.0762" layer="21"/>
+</package>
+<package name="TESTPOINT">
+<pad name="P1" x="0" y="0" drill="1" shape="octagon"/>
+<text x="0" y="1.27" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
+</package>
 </packages>
 <symbols>
+<symbol name="F-363XP">
+<pin name="P$1" x="0" y="0" visible="pad" length="middle"/>
+<pin name="P$2" x="0" y="5.08" visible="pad" length="middle"/>
+<pin name="P$3" x="17.78" y="-2.54" visible="pad" length="middle" rot="R180"/>
+<pin name="P$4" x="17.78" y="7.62" visible="pad" length="middle" rot="R180"/>
+<wire x1="5.08" y1="5.08" x2="5.08" y2="2.54" width="0.254" layer="94" curve="-180"/>
+<wire x1="5.08" y1="2.54" x2="5.08" y2="0" width="0.254" layer="94" curve="-180"/>
+<wire x1="12.7" y1="7.62" x2="12.7" y2="5.08" width="0.254" layer="94" curve="180"/>
+<wire x1="12.7" y1="5.08" x2="12.7" y2="2.54" width="0.254" layer="94" curve="180"/>
+<wire x1="12.7" y1="2.54" x2="12.7" y2="0" width="0.254" layer="94" curve="180"/>
+<wire x1="12.7" y1="0" x2="12.7" y2="-2.54" width="0.254" layer="94" curve="180"/>
+<wire x1="7.62" y1="-2.54" x2="7.62" y2="7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="7.62" x2="10.16" y2="-2.54" width="0.254" layer="94"/>
+<text x="5.08" y="7.62" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+<symbol name="CAPACITOR">
+<pin name="P$1" x="0" y="0" visible="off" length="short" direction="pas"/>
+<pin name="P$2" x="7.62" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<wire x1="3.175" y1="2.54" x2="3.175" y2="0" width="0.1524" layer="94"/>
+<wire x1="3.175" y1="0" x2="3.175" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="4.445" y1="2.54" x2="4.445" y2="0" width="0.1524" layer="94"/>
+<text x="3.81" y="2.54" size="1.778" layer="95" align="bottom-center">&gt;NAME</text>
+<text x="3.81" y="-5.08" size="1.778" layer="96" align="bottom-center">&gt;VALUE</text>
+<wire x1="4.445" y1="0" x2="4.445" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="0" x2="3.175" y2="0" width="0.1524" layer="94"/>
+<wire x1="4.445" y1="0" x2="5.08" y2="0" width="0.1524" layer="94"/>
+</symbol>
+<symbol name="RESISTOR">
+<pin name="P$1" x="0" y="0" visible="off" length="short" direction="pas"/>
+<pin name="P$2" x="15.24" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<wire x1="2.54" y1="0" x2="3.386665625" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="3.386665625" y1="2.54" x2="5.08" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="5.08" y1="-2.54" x2="6.773334375" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="6.773334375" y1="2.54" x2="8.4666625" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="8.466665625" y1="-2.54" x2="10.16" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="10.16" y1="2.54" x2="11.853334375" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="11.853334375" y1="-2.54" x2="12.7" y2="0" width="0.1524" layer="94"/>
+<text x="7.62" y="2.54" size="1.778" layer="95" align="bottom-center">&gt;NAME</text>
+<text x="7.62" y="-5.08" size="1.778" layer="96" align="bottom-center">&gt;VALUE</text>
+</symbol>
+<symbol name="TESTPOINT">
+<pin name="P$1" x="0" y="0" visible="off" length="middle" direction="pas" rot="R90"/>
+<circle x="0" y="6.35" radius="1.27" width="0.254" layer="94"/>
+<text x="0" y="7.62" size="1.27" layer="95" align="bottom-center">&gt;NAME</text>
+</symbol>
 </symbols>
 <devicesets>
+<deviceset name="CAPACITOR" prefix="C" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="CAPACITOR" x="0" y="0"/>
+</gates>
+<devices>
+<device name="0805" package="0805">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="RESISTOR" prefix="R" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="RESISTOR" x="0" y="0"/>
+</gates>
+<devices>
+<device name="0805" package="0805">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="TESTPOINT" prefix="TP">
+<gates>
+<gate name="G$1" symbol="TESTPOINT" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TESTPOINT">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </drawing>
