@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="yes"/>
@@ -91,7 +91,68 @@
 <pad name="P1" x="0" y="0" drill="1" shape="octagon"/>
 <text x="0" y="1.27" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
+<package name="0402" urn="urn:adsk.eagle:footprint:16053684/1" locally_modified="yes">
+<description>Chip, 1.00 X 0.50 X 0.35 mm body
+&lt;p&gt;Chip package with body size 1.00 X 0.50 X 0.35 mm&lt;/p&gt;</description>
+<wire x1="0.5" y1="0.6199" x2="-0.5" y2="0.6199" width="0.12" layer="21"/>
+<wire x1="0.5" y1="-0.6199" x2="-0.5" y2="-0.6199" width="0.12" layer="21"/>
+<wire x1="0.5" y1="-0.25" x2="-0.5" y2="-0.25" width="0.12" layer="51"/>
+<wire x1="-0.5" y1="-0.25" x2="-0.5" y2="0.25" width="0.12" layer="51"/>
+<wire x1="-0.5" y1="0.25" x2="0.5" y2="0.25" width="0.12" layer="51"/>
+<wire x1="0.5" y1="0.25" x2="0.5" y2="-0.25" width="0.12" layer="51"/>
+<smd name="1" x="-0.5" y="0" dx="0.5" dy="0.6" layer="1"/>
+<smd name="2" x="0.5" y="0" dx="0.5" dy="0.6" layer="1"/>
+<text x="0" y="1.2549" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
+</package>
+<package name="EEE-1EA101AP" urn="urn:adsk.eagle:footprint:15328781/1" locally_modified="yes">
+<description>ECAP (Aluminum Electrolytic Capacitor), 8.30 X 10.20 mm body
+&lt;p&gt;ECAP (Aluminum Electrolytic Capacitor) package with body size 8.30 X 10.20 mm&lt;/p&gt;</description>
+<wire x1="-4.25" y1="1.2534" x2="-4.25" y2="2.6247" width="0.12" layer="21"/>
+<wire x1="-4.25" y1="2.6247" x2="-2.6247" y2="4.25" width="0.12" layer="21"/>
+<wire x1="-2.6247" y1="4.25" x2="4.25" y2="4.25" width="0.12" layer="21"/>
+<wire x1="4.25" y1="4.25" x2="4.25" y2="1.2534" width="0.12" layer="21"/>
+<wire x1="-4.25" y1="-1.2534" x2="-4.25" y2="-2.6247" width="0.12" layer="21"/>
+<wire x1="-4.25" y1="-2.6247" x2="-2.6247" y2="-4.25" width="0.12" layer="21"/>
+<wire x1="-2.6247" y1="-4.25" x2="4.25" y2="-4.25" width="0.12" layer="21"/>
+<wire x1="4.25" y1="-4.25" x2="4.25" y2="-1.2534" width="0.12" layer="21"/>
+<wire x1="4.25" y1="-4.25" x2="-4.25" y2="-4.25" width="0.12" layer="51"/>
+<wire x1="-4.25" y1="-4.25" x2="-4.25" y2="4.25" width="0.12" layer="51"/>
+<wire x1="-4.25" y1="4.25" x2="4.25" y2="4.25" width="0.12" layer="51"/>
+<wire x1="4.25" y1="4.25" x2="4.25" y2="-4.25" width="0.12" layer="51"/>
+<smd name="+" x="-3.625" y="0" dx="4.1618" dy="1.9987" layer="1"/>
+<smd name="-" x="3.625" y="0" dx="4.1618" dy="1.9987" layer="1"/>
+<text x="0" y="4.885" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
+</package>
+<package name="2512" urn="urn:adsk.eagle:footprint:16173500/1" locally_modified="yes">
+<description>Chip, 6.30 X 3.20 X 0.60 mm body
+&lt;p&gt;Chip package with body size 6.30 X 3.20 X 0.60 mm&lt;/p&gt;</description>
+<wire x1="3.15" y1="1.9699" x2="-3.15" y2="1.9699" width="0.12" layer="21"/>
+<wire x1="3.15" y1="-1.9699" x2="-3.15" y2="-1.9699" width="0.12" layer="21"/>
+<wire x1="3.15" y1="-1.6" x2="-3.15" y2="-1.6" width="0.12" layer="51"/>
+<wire x1="-3.15" y1="-1.6" x2="-3.15" y2="1.6" width="0.12" layer="51"/>
+<wire x1="-3.15" y1="1.6" x2="3.15" y2="1.6" width="0.12" layer="51"/>
+<wire x1="3.15" y1="1.6" x2="3.15" y2="-1.6" width="0.12" layer="51"/>
+<smd name="1" x="-2.7" y="0" dx="1.6" dy="3.5" layer="1"/>
+<smd name="2" x="2.7" y="0" dx="1.6" dy="3.5" layer="1"/>
+<text x="0" y="2.6049" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
+</package>
 </packages>
+<packages3d>
+<package3d name="CAPAE830X1020N" urn="urn:adsk.eagle:package:15328765/1" locally_modified="yes" type="model">
+<description>ECAP (Aluminum Electrolytic Capacitor), 8.30 X 10.20 mm body
+&lt;p&gt;ECAP (Aluminum Electrolytic Capacitor) package with body size 8.30 X 10.20 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="EEE-1EA101AP"/>
+</packageinstances>
+</package3d>
+<package3d name="RESC6332X60N" urn="urn:adsk.eagle:package:16173394/1" type="model">
+<description>Chip, 6.30 X 3.20 X 0.60 mm body
+&lt;p&gt;Chip package with body size 6.30 X 3.20 X 0.60 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="2512"/>
+</packageinstances>
+</package3d>
+</packages3d>
 <symbols>
 <symbol name="F-363XP">
 <pin name="P$1" x="0" y="0" visible="pad" length="middle"/>
@@ -163,6 +224,17 @@
 <text x="0" y="2.54" size="1.778" layer="96" rot="R180" align="bottom-center">&gt;VALUE</text>
 <pin name="+170V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
+<symbol name="EEE-1EA101AP">
+<wire x1="0" y1="2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.254" layer="94" curve="-67.380135"/>
+<pin name="+" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
+<pin name="-" x="5.08" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<wire x1="1.778" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="3.81" x2="-2.54" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-3.81" y1="2.54" x2="-1.27" y2="2.54" width="0.254" layer="94"/>
+<text x="-2.54" y="5.08" size="1.27" layer="95">&gt;NAME</text>
+<text x="-2.54" y="-5.08" size="1.27" layer="96">&gt;VALUE</text>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="CAPACITOR" prefix="C" uservalue="yes">
@@ -174,6 +246,15 @@
 <connects>
 <connect gate="G$1" pin="P$1" pad="P$1"/>
 <connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0402" package="0402">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -191,6 +272,27 @@
 <connect gate="G$1" pin="P$1" pad="P$1"/>
 <connect gate="G$1" pin="P$2" pad="P$2"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="0402" package="0402">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="2512" package="2512">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:16173394/1"/>
+</package3dinstances>
 <technologies>
 <technology name=""/>
 </technologies>
@@ -277,7 +379,38 @@
 </device>
 </devices>
 </deviceset>
+<deviceset name="EEE-1EA101AP" prefix="C" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="EEE-1EA101AP" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="EEE-1EA101AP">
+<connects>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:15328765/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </drawing>
+<compatibility>
+<note version="8.3" severity="warning">
+Since Version 8.3, EAGLE supports URNs for individual library
+assets (packages, symbols, and devices). The URNs of those assets
+will not be understood (or retained) with this version.
+</note>
+<note version="8.3" severity="warning">
+Since Version 8.3, EAGLE supports the association of 3D packages
+with devices in libraries, schematics, and board files. Those 3D
+packages will not be understood (or retained) with this version.
+</note>
+</compatibility>
 </eagle>
