@@ -284,6 +284,15 @@
 <smd name="1" x="0.975" y="0.65" dx="0.75" dy="0.7" layer="1"/>
 <text x="0" y="1.7136" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
+<package name="ELECTROMAGNET">
+<pad name="+" x="-1.27" y="0" drill="0.6" shape="square"/>
+<pad name="-" x="1.27" y="0" drill="0.6"/>
+<wire x1="-2.54" y1="1.27" x2="2.54" y2="1.27" width="0.127" layer="21"/>
+<wire x1="2.54" y1="1.27" x2="2.54" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="2.54" y1="-1.27" x2="-2.54" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-1.27" x2="-2.54" y2="1.27" width="0.127" layer="21"/>
+<text x="0" y="1.27" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
+</package>
 </packages>
 <packages3d>
 <package3d name="CAPAE830X1020N" urn="urn:adsk.eagle:package:15328765/1" locally_modified="yes" type="model">
@@ -529,6 +538,15 @@
 <wire x1="-1.27" y1="2.54" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
 <wire x1="3.81" y1="2.54" x2="3.81" y2="-2.54" width="0.254" layer="94"/>
 <text x="-1.27" y="-2.54" size="1.27" layer="96" align="top-left">&gt;VALUE</text>
+</symbol>
+<symbol name="INDUCTOR">
+<pin name="P$1" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
+<pin name="P$2" x="7.62" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<wire x1="-2.54" y1="0" x2="0" y2="0" width="0.1524" layer="94" curve="-180"/>
+<wire x1="0" y1="0" x2="2.54" y2="0" width="0.1524" layer="94" curve="-180"/>
+<wire x1="2.54" y1="0" x2="5.08" y2="0" width="0.1524" layer="94" curve="-180"/>
+<text x="1.27" y="2.54" size="1.778" layer="95" align="bottom-center">&gt;NAME</text>
+<text x="1.27" y="-2.54" size="1.778" layer="96" align="bottom-center">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -851,6 +869,22 @@
 <package3dinstances>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:14566896/1"/>
 </package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="ELECTROMAGNET" prefix="L">
+<gates>
+<gate name="G$1" symbol="INDUCTOR" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="ELECTROMAGNET">
+<connects>
+<connect gate="G$1" pin="P$1" pad="+"/>
+<connect gate="G$1" pin="P$2" pad="-"/>
+</connects>
 <technologies>
 <technology name=""/>
 </technologies>
