@@ -269,6 +269,21 @@
 <pad name="16" x="-8.89" y="-6.35" drill="1.1051" diameter="1.7051"/>
 <text x="-8.89" y="9.009" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
+<package name="XRCGB" urn="urn:adsk.eagle:footprint:14566901/1" locally_modified="yes">
+<description>DFN4, 2.00 X 1.60 X 0.70 mm body
+&lt;p&gt;DFN4 package with body size 2.00 X 1.60 X 0.70 mm&lt;/p&gt;</description>
+<wire x1="1.05" y1="1.0786" x2="-1.05" y2="1.0786" width="0.12" layer="21"/>
+<wire x1="1.05" y1="-1.0786" x2="-1.05" y2="-1.0786" width="0.12" layer="21"/>
+<wire x1="1.05" y1="-0.85" x2="-1.05" y2="-0.85" width="0.12" layer="51"/>
+<wire x1="-1.05" y1="-0.85" x2="-1.05" y2="0.85" width="0.12" layer="51"/>
+<wire x1="-1.05" y1="0.85" x2="1.05" y2="0.85" width="0.12" layer="51"/>
+<wire x1="1.05" y1="0.85" x2="1.05" y2="-0.85" width="0.12" layer="51"/>
+<smd name="2" x="-0.975" y="0.65" dx="0.75" dy="0.7" layer="1"/>
+<smd name="3" x="-0.975" y="-0.65" dx="0.75" dy="0.7" layer="1"/>
+<smd name="4" x="0.975" y="-0.65" dx="0.75" dy="0.7" layer="1"/>
+<smd name="1" x="0.975" y="0.65" dx="0.75" dy="0.7" layer="1"/>
+<text x="0" y="1.7136" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
+</package>
 </packages>
 <packages3d>
 <package3d name="CAPAE830X1020N" urn="urn:adsk.eagle:package:15328765/1" locally_modified="yes" type="model">
@@ -311,6 +326,13 @@
 &lt;p&gt;Double-row (2X8), 16-pin Receptacle Header (Female) Straight package with 12.70 mm (0.50 in) row pitch, 2.54 mm (0.10 in) col pitch, 0.64 mm lead width, 3.00 mm tail length and 2.54 mm insulator length with overall size 20.32 X 15.24 X 2.54 mm, pin pattern - clockwise from top left&lt;/p&gt;</description>
 <packageinstances>
 <packageinstance name="STEPPER_DRIVER"/>
+</packageinstances>
+</package3d>
+<package3d name="DFN200X160X70-4N" urn="urn:adsk.eagle:package:14566896/1" locally_modified="yes" type="model">
+<description>DFN4, 2.00 X 1.60 X 0.70 mm body
+&lt;p&gt;DFN4 package with body size 2.00 X 1.60 X 0.70 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="XRCGB"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -493,6 +515,20 @@
 <wire x1="30.48" y1="25.4" x2="5.08" y2="25.4" width="0.254" layer="94"/>
 <wire x1="5.08" y1="25.4" x2="5.08" y2="5.08" width="0.254" layer="94"/>
 <text x="22.86" y="25.4" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+<symbol name="XRCGB">
+<wire x1="0" y1="-2.54" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="2.54" x2="2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<pin name="P$1" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
+<pin name="P$2" x="7.62" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<text x="-1.27" y="2.54" size="1.27" layer="95">&gt;NAME</text>
+<wire x1="-2.54" y1="0" x2="-1.27" y2="0" width="0.1524" layer="94"/>
+<wire x1="5.08" y1="0" x2="3.81" y2="0" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="2.54" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="3.81" y1="2.54" x2="3.81" y2="-2.54" width="0.254" layer="94"/>
+<text x="-1.27" y="-2.54" size="1.27" layer="96" align="top-left">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -795,6 +831,25 @@
 </connects>
 <package3dinstances>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:16188684/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="XRCGB" prefix="XTAL" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="XRCGB" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="XRCGB">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1 3"/>
+<connect gate="G$1" pin="P$2" pad="2 4"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:14566896/1"/>
 </package3dinstances>
 <technologies>
 <technology name=""/>
