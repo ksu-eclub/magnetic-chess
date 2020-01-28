@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="yes"/>
@@ -73,11 +73,96 @@
 </layers>
 <library>
 <packages>
+<package name="SOT95P240X120-3N" urn="urn:adsk.eagle:footprint:16707560/1">
+<description>3-SOT23, 0.95 mm pitch, 2.40 mm span, 2.90 X 1.35 X 1.20 mm body
+&lt;p&gt;3-pin SOT23 package with 0.95 mm pitch, 2.40 mm span with body size 2.90 X 1.35 X 1.20 mm&lt;/p&gt;</description>
+<circle x="-1.254" y="1.7525" radius="0.25" width="0" layer="21"/>
+<wire x1="-0.75" y1="1.5625" x2="0.75" y2="1.5625" width="0.12" layer="21"/>
+<wire x1="0.75" y1="1.5625" x2="0.75" y2="0.5525" width="0.12" layer="21"/>
+<wire x1="-0.75" y1="-1.5625" x2="0.75" y2="-1.5625" width="0.12" layer="21"/>
+<wire x1="0.75" y1="-1.5625" x2="0.75" y2="-0.5525" width="0.12" layer="21"/>
+<wire x1="0.75" y1="-1.55" x2="-0.75" y2="-1.55" width="0.12" layer="51"/>
+<wire x1="-0.75" y1="-1.55" x2="-0.75" y2="1.55" width="0.12" layer="51"/>
+<wire x1="-0.75" y1="1.55" x2="0.75" y2="1.55" width="0.12" layer="51"/>
+<wire x1="0.75" y1="1.55" x2="0.75" y2="-1.55" width="0.12" layer="51"/>
+<smd name="1" x="-1.1" y="0.95" dx="1.1153" dy="0.5971" layer="1"/>
+<smd name="2" x="-1.1" y="-0.95" dx="1.1153" dy="0.5971" layer="1"/>
+<smd name="3" x="1.1" y="0" dx="1.1153" dy="0.5971" layer="1"/>
+<text x="0" y="2.6375" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.1975" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SOT95P280X100-6N" urn="urn:adsk.eagle:footprint:16707637/1">
+<description>6-SOT23, 0.95 mm pitch, 2.80 mm span, 2.90 X 1.60 X 1.00 mm body
+&lt;p&gt;6-pin SOT23 package with 0.95 mm pitch, 2.80 mm span with body size 2.90 X 1.60 X 1.00 mm&lt;/p&gt;</description>
+<circle x="-1.304" y="1.7275" radius="0.25" width="0" layer="21"/>
+<wire x1="-0.8" y1="1.5375" x2="0.8" y2="1.5375" width="0.12" layer="21"/>
+<wire x1="-0.8" y1="-1.5375" x2="0.8" y2="-1.5375" width="0.12" layer="21"/>
+<wire x1="0.8" y1="-1.45" x2="-0.8" y2="-1.45" width="0.12" layer="51"/>
+<wire x1="-0.8" y1="-1.45" x2="-0.8" y2="1.45" width="0.12" layer="51"/>
+<wire x1="-0.8" y1="1.45" x2="0.8" y2="1.45" width="0.12" layer="51"/>
+<wire x1="0.8" y1="1.45" x2="0.8" y2="-1.45" width="0.12" layer="51"/>
+<smd name="1" x="-1.1873" y="0.95" dx="1.2373" dy="0.5471" layer="1"/>
+<smd name="2" x="-1.1873" y="0" dx="1.2373" dy="0.5471" layer="1"/>
+<smd name="3" x="-1.1873" y="-0.95" dx="1.2373" dy="0.5471" layer="1"/>
+<smd name="4" x="1.1873" y="-0.95" dx="1.2373" dy="0.5471" layer="1"/>
+<smd name="5" x="1.1873" y="0" dx="1.2373" dy="0.5471" layer="1"/>
+<smd name="6" x="1.1873" y="0.95" dx="1.2373" dy="0.5471" layer="1"/>
+<text x="0" y="2.6125" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.1725" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SOD2512X110N" urn="urn:adsk.eagle:footprint:16707756/1">
+<description>SOD, 2.50 mm span, 1.70 X 1.25 X 1.10 mm body
+&lt;p&gt;SOD package with 2.50 mm span with body size 1.70 X 1.25 X 1.10 mm&lt;/p&gt;</description>
+<wire x1="0.9" y1="0.675" x2="-1.9786" y2="0.675" width="0.12" layer="21"/>
+<wire x1="-1.9786" y1="0.675" x2="-1.9786" y2="-0.675" width="0.12" layer="21"/>
+<wire x1="-1.9786" y1="-0.675" x2="0.9" y2="-0.675" width="0.12" layer="21"/>
+<wire x1="0.9" y1="-0.675" x2="-0.9" y2="-0.675" width="0.12" layer="51"/>
+<wire x1="-0.9" y1="-0.675" x2="-0.9" y2="0.675" width="0.12" layer="51"/>
+<wire x1="-0.9" y1="0.675" x2="0.9" y2="0.675" width="0.12" layer="51"/>
+<wire x1="0.9" y1="0.675" x2="0.9" y2="-0.675" width="0.12" layer="51"/>
+<smd name="1" x="-1.2206" y="0" dx="0.888" dy="0.5718" layer="1"/>
+<smd name="2" x="1.2206" y="0" dx="0.888" dy="0.5718" layer="1"/>
+<text x="0" y="1.31" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.31" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="GBJ1004-BP">
+<pad name="1" x="-20" y="0" drill="1.15" shape="square"/>
+<pad name="2" x="-10" y="0" drill="1.15" shape="square"/>
+<pad name="3" x="-2.5" y="0" drill="1.15" shape="square"/>
+<pad name="4" x="5" y="0" drill="1.15" shape="square"/>
+<wire x1="-24.3" y1="-2.7" x2="-24.3" y2="2.7" width="0.127" layer="21"/>
+<wire x1="-24.3" y1="2.7" x2="8.1" y2="2.7" width="0.127" layer="21"/>
+<wire x1="8.1" y1="2.7" x2="8.1" y2="-2.7" width="0.127" layer="21"/>
+<wire x1="8.1" y1="-2.7" x2="-24.3" y2="-2.7" width="0.127" layer="21"/>
+</package>
 </packages>
+<packages3d>
+<package3d name="SOT95P240X120-3N" urn="urn:adsk.eagle:package:16707456/1" type="model">
+<description>3-SOT23, 0.95 mm pitch, 2.40 mm span, 2.90 X 1.35 X 1.20 mm body
+&lt;p&gt;3-pin SOT23 package with 0.95 mm pitch, 2.40 mm span with body size 2.90 X 1.35 X 1.20 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SOT95P240X120-3N"/>
+</packageinstances>
+</package3d>
+<package3d name="SOT95P280X100-6N" urn="urn:adsk.eagle:package:16707621/1" type="model">
+<description>6-SOT23, 0.95 mm pitch, 2.80 mm span, 2.90 X 1.60 X 1.00 mm body
+&lt;p&gt;6-pin SOT23 package with 0.95 mm pitch, 2.80 mm span with body size 2.90 X 1.60 X 1.00 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SOT95P280X100-6N"/>
+</packageinstances>
+</package3d>
+<package3d name="SOD2512X110N" urn="urn:adsk.eagle:package:16707742/1" type="model">
+<description>SOD, 2.50 mm span, 1.70 X 1.25 X 1.10 mm body
+&lt;p&gt;SOD package with 2.50 mm span with body size 1.70 X 1.25 X 1.10 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SOD2512X110N"/>
+</packageinstances>
+</package3d>
+</packages3d>
 <symbols>
-<symbol name="1N4148TR">
-<pin name="P$1" x="-7.62" y="2.54" visible="pad" length="middle"/>
-<pin name="P$2" x="7.62" y="2.54" visible="pad" length="middle" rot="R180"/>
+<symbol name="BAT54HT1G">
+<pin name="ANODE(2)" x="-7.62" y="2.54" visible="pad" length="middle"/>
+<pin name="CATHODE(1)" x="7.62" y="2.54" visible="pad" length="middle" rot="R180"/>
 <wire x1="-2.54" y1="5.08" x2="-2.54" y2="0" width="0.254" layer="94"/>
 <wire x1="-2.54" y1="0" x2="2.54" y2="2.54" width="0.254" layer="94"/>
 <wire x1="2.54" y1="2.54" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
@@ -85,9 +170,9 @@
 <text x="-5.08" y="5.08" size="1.778" layer="95">&gt;NAME</text>
 </symbol>
 <symbol name="N-CHANNEL_MOSFET">
-<pin name="P$1" x="-25.4" y="-10.16" visible="pad" length="middle"/>
-<pin name="P$2" x="-7.62" y="7.62" visible="pad" length="middle" rot="R270"/>
-<pin name="P$3" x="-7.62" y="-17.78" visible="pad" length="middle" rot="R90"/>
+<pin name="GATE(1)" x="-25.4" y="-10.16" visible="pad" length="middle"/>
+<pin name="DRAIN(3)" x="-7.62" y="7.62" visible="pad" length="middle" rot="R270"/>
+<pin name="SOURCE(2)" x="-7.62" y="-17.78" visible="pad" length="middle" rot="R90"/>
 <wire x1="-20.32" y1="-10.16" x2="-15.24" y2="-10.16" width="0.254" layer="94"/>
 <wire x1="-7.62" y1="2.54" x2="-7.62" y2="0" width="0.254" layer="94"/>
 <wire x1="-7.62" y1="0" x2="-12.7" y2="0" width="0.254" layer="94"/>
@@ -105,8 +190,8 @@
 <text x="-17.78" y="7.62" size="1.778" layer="95">&gt;NAME</text>
 </symbol>
 <symbol name="GBJ1004-BP">
-<pin name="P$1" x="-30.48" y="10.16" visible="pad" length="middle"/>
-<pin name="P$2" x="-30.48" y="-5.08" visible="pad" length="middle"/>
+<pin name="AC_IN1" x="-30.48" y="10.16" visible="pad" length="middle"/>
+<pin name="AC_IN2" x="-30.48" y="-5.08" visible="pad" length="middle"/>
 <wire x1="-10.16" y1="2.54" x2="2.54" y2="15.24" width="0.254" layer="94"/>
 <wire x1="2.54" y1="15.24" x2="15.24" y2="2.54" width="0.254" layer="94"/>
 <wire x1="15.24" y1="2.54" x2="2.54" y2="-10.16" width="0.254" layer="94"/>
@@ -146,13 +231,102 @@
 <wire x1="-10.16" y1="-17.78" x2="-10.16" y2="-20.32" width="0.254" layer="94"/>
 <wire x1="-10.16" y1="-20.32" x2="20.32" y2="-20.32" width="0.254" layer="94"/>
 <wire x1="-10.16" y1="-12.7" x2="-10.16" y2="-17.78" width="0.254" layer="94" curve="-180"/>
-<pin name="P$3" x="25.4" y="2.54" visible="pad" length="middle" rot="R180"/>
-<pin name="P$4" x="25.4" y="-20.32" visible="pad" length="middle" rot="R180"/>
+<pin name="POSITIVE_DC" x="25.4" y="2.54" visible="pad" length="middle" rot="R180"/>
+<pin name="NEGATIVE_DC" x="25.4" y="-20.32" visible="pad" length="middle" rot="R180"/>
 <text x="-2.54" y="22.86" size="1.778" layer="95">&gt;NAME</text>
 </symbol>
 </symbols>
 <devicesets>
+<deviceset name="RK7002BMT116">
+<gates>
+<gate name="G$1" symbol="N-CHANNEL_MOSFET" x="12.7" y="5.08"/>
+</gates>
+<devices>
+<device name="" package="SOT95P240X120-3N">
+<connects>
+<connect gate="G$1" pin="DRAIN(3)" pad="3"/>
+<connect gate="G$1" pin="GATE(1)" pad="1"/>
+<connect gate="G$1" pin="SOURCE(2)" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:16707456/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="DMN1019UVT-7">
+<gates>
+<gate name="G$1" symbol="N-CHANNEL_MOSFET" x="12.7" y="5.08"/>
+</gates>
+<devices>
+<device name="DMN1019UVT-7" package="SOT95P280X100-6N">
+<connects>
+<connect gate="G$1" pin="DRAIN(3)" pad="1 2 5 6"/>
+<connect gate="G$1" pin="GATE(1)" pad="3"/>
+<connect gate="G$1" pin="SOURCE(2)" pad="4"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:16707621/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="BAT54HT1G">
+<gates>
+<gate name="G$1" symbol="BAT54HT1G" x="0" y="-2.54"/>
+</gates>
+<devices>
+<device name="BAT54HT1G" package="SOD2512X110N">
+<connects>
+<connect gate="G$1" pin="ANODE(2)" pad="2"/>
+<connect gate="G$1" pin="CATHODE(1)" pad="1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:16707742/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="GBJ1004-BP">
+<gates>
+<gate name="G$1" symbol="GBJ1004-BP" x="2.54" y="-2.54"/>
+</gates>
+<devices>
+<device name="" package="GBJ1004-BP">
+<connects>
+<connect gate="G$1" pin="AC_IN1" pad="2"/>
+<connect gate="G$1" pin="AC_IN2" pad="3"/>
+<connect gate="G$1" pin="NEGATIVE_DC" pad="4"/>
+<connect gate="G$1" pin="POSITIVE_DC" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </drawing>
+<compatibility>
+<note version="8.3" severity="warning">
+Since Version 8.3, EAGLE supports URNs for individual library
+assets (packages, symbols, and devices). The URNs of those assets
+will not be understood (or retained) with this version.
+</note>
+<note version="8.3" severity="warning">
+Since Version 8.3, EAGLE supports the association of 3D packages
+with devices in libraries, schematics, and board files. Those 3D
+packages will not be understood (or retained) with this version.
+</note>
+</compatibility>
 </eagle>
