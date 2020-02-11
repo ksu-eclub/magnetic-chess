@@ -994,7 +994,7 @@
 <wire x1="-66.04" y1="50.8" x2="-68.58" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="~SLEEP" class="0">
+<net name="SLEEP" class="0">
 <segment>
 <pinref part="A1" gate="G$1" pin="!SLP"/>
 <wire x1="15.24" y1="20.32" x2="-5.08" y2="20.32" width="0.1524" layer="91"/>
@@ -1006,7 +1006,7 @@
 <label x="-76.2" y="35.56" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="~RST" class="0">
+<net name="RST" class="0">
 <segment>
 <pinref part="A1" gate="G$1" pin="!RST"/>
 <wire x1="15.24" y1="17.78" x2="-5.08" y2="17.78" width="0.1524" layer="91"/>
