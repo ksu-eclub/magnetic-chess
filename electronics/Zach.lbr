@@ -1048,6 +1048,10 @@
 </gates>
 <devices>
 <device name="" package="ESMQ351VSN102MA50S">
+<connects>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
+</connects>
 <package3dinstances>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:17210883/1"/>
 </package3dinstances>
