@@ -73,7 +73,7 @@
 </layers>
 <library>
 <packages>
-<package name="SOT95P240X120-3N" urn="urn:adsk.eagle:footprint:16707560/1">
+<package name="SOT95P240X120-3N" urn="urn:adsk.eagle:footprint:16707560/1" locally_modified="yes">
 <description>3-SOT23, 0.95 mm pitch, 2.40 mm span, 2.90 X 1.35 X 1.20 mm body
 &lt;p&gt;3-pin SOT23 package with 0.95 mm pitch, 2.40 mm span with body size 2.90 X 1.35 X 1.20 mm&lt;/p&gt;</description>
 <circle x="-1.254" y="1.7525" radius="0.25" width="0" layer="21"/>
@@ -88,10 +88,9 @@
 <smd name="1" x="-1.1" y="0.95" dx="1.1153" dy="0.5971" layer="1"/>
 <smd name="2" x="-1.1" y="-0.95" dx="1.1153" dy="0.5971" layer="1"/>
 <smd name="3" x="1.1" y="0" dx="1.1153" dy="0.5971" layer="1"/>
-<text x="0" y="2.6375" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-2.1975" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+<text x="0" y="2.6375" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
-<package name="SOT95P280X100-6N" urn="urn:adsk.eagle:footprint:16707637/1">
+<package name="SOT95P280X100-6N" urn="urn:adsk.eagle:footprint:16707637/1" locally_modified="yes">
 <description>6-SOT23, 0.95 mm pitch, 2.80 mm span, 2.90 X 1.60 X 1.00 mm body
 &lt;p&gt;6-pin SOT23 package with 0.95 mm pitch, 2.80 mm span with body size 2.90 X 1.60 X 1.00 mm&lt;/p&gt;</description>
 <circle x="-1.304" y="1.7275" radius="0.25" width="0" layer="21"/>
@@ -107,10 +106,9 @@
 <smd name="4" x="1.1873" y="-0.95" dx="1.2373" dy="0.5471" layer="1"/>
 <smd name="5" x="1.1873" y="0" dx="1.2373" dy="0.5471" layer="1"/>
 <smd name="6" x="1.1873" y="0.95" dx="1.2373" dy="0.5471" layer="1"/>
-<text x="0" y="2.6125" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-2.1725" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+<text x="0" y="2.6125" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
-<package name="SOD2512X110N" urn="urn:adsk.eagle:footprint:16707756/1">
+<package name="SOD2512X110N" urn="urn:adsk.eagle:footprint:16707756/1" locally_modified="yes">
 <description>SOD, 2.50 mm span, 1.70 X 1.25 X 1.10 mm body
 &lt;p&gt;SOD package with 2.50 mm span with body size 1.70 X 1.25 X 1.10 mm&lt;/p&gt;</description>
 <wire x1="0.9" y1="0.675" x2="-1.9786" y2="0.675" width="0.12" layer="21"/>
@@ -122,18 +120,18 @@
 <wire x1="0.9" y1="0.675" x2="0.9" y2="-0.675" width="0.12" layer="51"/>
 <smd name="1" x="-1.2206" y="0" dx="0.888" dy="0.5718" layer="1"/>
 <smd name="2" x="1.2206" y="0" dx="0.888" dy="0.5718" layer="1"/>
-<text x="0" y="1.31" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-1.31" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+<text x="0" y="1.31" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
 <package name="GBJ1004-BP">
-<pad name="1" x="-20" y="0" drill="1.15" shape="square"/>
-<pad name="2" x="-10" y="0" drill="1.15" shape="square"/>
-<pad name="3" x="-2.5" y="0" drill="1.15" shape="square"/>
-<pad name="4" x="5" y="0" drill="1.15" shape="square"/>
+<pad name="1" x="-20" y="0" drill="1.43" shape="square"/>
+<pad name="2" x="-10" y="0" drill="1.43" shape="square"/>
+<pad name="3" x="-2.5" y="0" drill="1.43" shape="square"/>
+<pad name="4" x="5" y="0" drill="1.43" shape="square"/>
 <wire x1="-24.3" y1="-2.7" x2="-24.3" y2="2.7" width="0.127" layer="21"/>
 <wire x1="-24.3" y1="2.7" x2="8.1" y2="2.7" width="0.127" layer="21"/>
 <wire x1="8.1" y1="2.7" x2="8.1" y2="-2.7" width="0.127" layer="21"/>
 <wire x1="8.1" y1="-2.7" x2="-24.3" y2="-2.7" width="0.127" layer="21"/>
+<text x="-10.16" y="3.81" size="0.8128" layer="25">&gt;NAME</text>
 </package>
 </packages>
 <packages3d>
@@ -237,7 +235,7 @@
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="RK7002BMT116">
+<deviceset name="RK7002BMT116" prefix="Q">
 <gates>
 <gate name="G$1" symbol="N-CHANNEL_MOSFET" x="12.7" y="5.08"/>
 </gates>
@@ -257,7 +255,7 @@
 </device>
 </devices>
 </deviceset>
-<deviceset name="DMN1019UVT-7">
+<deviceset name="DMN1019UVT-7" prefix="Q">
 <gates>
 <gate name="G$1" symbol="N-CHANNEL_MOSFET" x="12.7" y="5.08"/>
 </gates>
@@ -277,7 +275,7 @@
 </device>
 </devices>
 </deviceset>
-<deviceset name="BAT54HT1G">
+<deviceset name="BAT54HT1G" prefix="D">
 <gates>
 <gate name="G$1" symbol="BAT54HT1G" x="0" y="-2.54"/>
 </gates>
@@ -296,7 +294,7 @@
 </device>
 </devices>
 </deviceset>
-<deviceset name="GBJ1004-BP">
+<deviceset name="GBJ1004-BP" prefix="BR">
 <gates>
 <gate name="G$1" symbol="GBJ1004-BP" x="2.54" y="-2.54"/>
 </gates>
