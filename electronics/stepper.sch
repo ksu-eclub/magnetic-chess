@@ -161,15 +161,6 @@
 <text x="0" y="5.5409" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-5.5409" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
-<package name="0805">
-<smd name="P$1" x="-0.9525" y="0" dx="1.2954" dy="0.7112" layer="1" rot="R90"/>
-<smd name="P$2" x="0.9525" y="0" dx="1.2954" dy="0.7112" layer="1" rot="R90"/>
-<text x="0" y="0.8636" size="0.254" layer="25" align="bottom-center">&gt;NAME</text>
-<wire x1="-1.524" y1="0.762" x2="1.524" y2="0.762" width="0.0762" layer="21"/>
-<wire x1="1.524" y1="0.762" x2="1.524" y2="-0.762" width="0.0762" layer="21"/>
-<wire x1="1.524" y1="-0.762" x2="-1.524" y2="-0.762" width="0.0762" layer="21"/>
-<wire x1="-1.524" y1="-0.762" x2="-1.524" y2="0.762" width="0.0762" layer="21"/>
-</package>
 <package name="0402" urn="urn:adsk.eagle:footprint:16053684/1" locally_modified="yes">
 <description>Chip, 1.00 X 0.50 X 0.35 mm body
 &lt;p&gt;Chip package with body size 1.00 X 0.50 X 0.35 mm&lt;/p&gt;</description>
@@ -280,6 +271,15 @@
 <smd name="1" x="-2.7" y="0" dx="1.6" dy="3.5" layer="1"/>
 <smd name="2" x="2.7" y="0" dx="1.6" dy="3.5" layer="1"/>
 <text x="0" y="2.6049" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
+</package>
+<package name="0805">
+<smd name="P$1" x="-0.9525" y="0" dx="1.2954" dy="0.7112" layer="1" rot="R90"/>
+<smd name="P$2" x="0.9525" y="0" dx="1.2954" dy="0.7112" layer="1" rot="R90"/>
+<text x="0" y="0.8636" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
+<wire x1="-1.524" y1="0.762" x2="1.524" y2="0.762" width="0.0762" layer="21"/>
+<wire x1="1.524" y1="0.762" x2="1.524" y2="-0.762" width="0.0762" layer="21"/>
+<wire x1="1.524" y1="-0.762" x2="-1.524" y2="-0.762" width="0.0762" layer="21"/>
+<wire x1="-1.524" y1="-0.762" x2="-1.524" y2="0.762" width="0.0762" layer="21"/>
 </package>
 </packages>
 <packages3d>
@@ -830,6 +830,8 @@
 <part name="R2" library="Zach" deviceset="RESISTOR" device="0402" value="0R"/>
 <part name="R3" library="Zach" deviceset="RESISTOR" device="0402" value="0R"/>
 <part name="R4" library="Zach" deviceset="RESISTOR" device="0402" value="0R"/>
+<part name="R5" library="Zach" deviceset="RESISTOR" device="0805" value="10k"/>
+<part name="P+9" library="Zach" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -930,6 +932,13 @@
 <instance part="R4" gate="G$1" x="116.84" y="55.88" smashed="yes" rot="R90">
 <attribute name="NAME" x="114.3" y="63.5" size="1.778" layer="95" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="121.92" y="63.5" size="1.778" layer="96" rot="R90" align="bottom-center"/>
+</instance>
+<instance part="R5" gate="G$1" x="-86.36" y="-15.24" smashed="yes" rot="R90">
+<attribute name="NAME" x="-88.9" y="-7.62" size="1.778" layer="95" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="-81.28" y="-7.62" size="1.778" layer="96" rot="R90" align="bottom-center"/>
+</instance>
+<instance part="P+9" gate="G$1" x="-86.36" y="5.08" smashed="yes">
+<attribute name="VALUE" x="-86.36" y="7.62" size="1.778" layer="96" rot="R180" align="bottom-center"/>
 </instance>
 </instances>
 <busses>
@@ -1222,6 +1231,11 @@
 <pinref part="J3" gate="G$1" pin="+3V3"/>
 <wire x1="-101.6" y1="58.42" x2="-99.06" y2="58.42" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="R5" gate="G$1" pin="P$2"/>
+<pinref part="P+9" gate="G$1" pin="+3V3"/>
+<wire x1="-86.36" y1="0" x2="-86.36" y2="2.54" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="SDL" class="0">
 <segment>
@@ -1301,8 +1315,12 @@
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PC6"/>
-<wire x1="-66.04" y1="0" x2="-76.2" y2="0" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="0" x2="-78.74" y2="0" width="0.1524" layer="91"/>
 <label x="-76.2" y="0" size="1.778" layer="95"/>
+<pinref part="R5" gate="G$1" pin="P$1"/>
+<wire x1="-86.36" y1="-15.24" x2="-86.36" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="-86.36" y1="-17.78" x2="-78.74" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="-78.74" y1="-17.78" x2="-78.74" y2="0" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RX" class="0">

@@ -1028,6 +1028,8 @@
 <part name="R13" library="Zach" deviceset="RESISTOR" device="0805"/>
 <part name="R14" library="Zach" deviceset="RESISTOR" device="0805"/>
 <part name="R15" library="Zach" deviceset="RESISTOR" device="0805"/>
+<part name="R16" library="Zach" deviceset="RESISTOR" device="0805" value="10k"/>
+<part name="P+11" library="Zach" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1078,6 +1080,13 @@
 </instance>
 <instance part="GND14" gate="1" x="106.68" y="-30.48" smashed="yes"/>
 <instance part="GND15" gate="1" x="124.46" y="-30.48" smashed="yes"/>
+<instance part="R16" gate="G$1" x="33.02" y="-15.24" smashed="yes" rot="R90">
+<attribute name="NAME" x="30.48" y="-7.62" size="1.778" layer="95" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="38.1" y="-7.62" size="1.778" layer="96" rot="R90" align="bottom-center"/>
+</instance>
+<instance part="P+11" gate="G$1" x="33.02" y="5.08" smashed="yes">
+<attribute name="VALUE" x="33.02" y="7.62" size="1.778" layer="96" rot="R180" align="bottom-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -1112,6 +1121,11 @@
 <wire x1="139.7" y1="5.08" x2="139.7" y2="2.54" width="0.1524" layer="91"/>
 <pinref part="J2" gate="G$1" pin="+3V3"/>
 <wire x1="139.7" y1="2.54" x2="142.24" y2="2.54" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R16" gate="G$1" pin="P$2"/>
+<pinref part="P+11" gate="G$1" pin="+3V3"/>
+<wire x1="33.02" y1="2.54" x2="33.02" y2="0" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -1240,8 +1254,10 @@
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="PC6"/>
-<wire x1="53.34" y1="-17.78" x2="40.64" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="-17.78" x2="33.02" y2="-17.78" width="0.1524" layer="91"/>
 <label x="40.64" y="-17.78" size="1.778" layer="95"/>
+<pinref part="R16" gate="G$1" pin="P$1"/>
+<wire x1="33.02" y1="-17.78" x2="33.02" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="XTAL2" class="0">
