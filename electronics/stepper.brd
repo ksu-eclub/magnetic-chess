@@ -82,8 +82,8 @@
 <wire x1="50.8" y1="0" x2="50.8" y2="44.45" width="0" layer="20"/>
 <wire x1="50.8" y1="44.45" x2="0" y2="44.45" width="0" layer="20"/>
 <wire x1="0" y1="44.45" x2="0" y2="0" width="0" layer="20"/>
-<text x="25.019" y="20.955" size="1.016" layer="21" rot="R90">Magnetic Chess Stepper Driver
-KSU Eclub 2019 - 2020
+<text x="25.019" y="20.955" size="0.9652" layer="21" rot="R90">Magnetic Chess | Stepper Driver
+KSU Eclub 2019-20
 Rev 1
 Miranda Dodson</text>
 <hole x="3.81" y="40.64" drill="3" locked="yes"/>
