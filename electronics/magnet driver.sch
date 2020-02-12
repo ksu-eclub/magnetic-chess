@@ -439,6 +439,22 @@
 <smd name="1" x="0.975" y="0.65" dx="0.75" dy="0.7" layer="1"/>
 <text x="0" y="1.7136" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 </package>
+<package name="1-770969-0">
+<description>Double-row, 4-pin Pin Header (Male) Right Angle, 4.14 mm (0.16 in) pitch, 6.10 mm mating length, 9.86 X 2.00 X 11.86 mm body
+&lt;p&gt;Double-row (2X2), 4-pin Pin Header (Male) Right Angle package with 4.14 mm (0.16 in) pitch, 1.05 mm lead width, 0.76 mm tail length and 6.10 mm mating length with body size 9.86 X 2.00 X 11.86 mm, pin pattern - clockwise from top left&lt;/p&gt;</description>
+<pad name="2" x="0" y="16.81" drill="2.07"/>
+<pad name="1" x="4.14" y="16.81" drill="2.07"/>
+<pad name="4" x="4.14" y="12.67" drill="2.07"/>
+<pad name="5" x="0" y="12.67" drill="2.07"/>
+<text x="0" y="18.7087" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<pad name="7" x="0" y="5.33" drill="3.86"/>
+<wire x1="-7" y1="18.55" x2="7" y2="18.55" width="0.127" layer="21"/>
+<wire x1="7" y1="18.55" x2="7" y2="0" width="0.127" layer="21"/>
+<wire x1="7" y1="0" x2="-7" y2="0" width="0.127" layer="21"/>
+<wire x1="-7" y1="0" x2="-7" y2="18.55" width="0.127" layer="21"/>
+<pad name="3" x="-4.14" y="16.81" drill="2.07"/>
+<pad name="6" x="-4.14" y="12.67" drill="2.07"/>
+</package>
 </packages>
 <packages3d>
 <package3d name="RESC6332X60N" urn="urn:adsk.eagle:package:16173394/1" type="model">
@@ -627,6 +643,18 @@
 <wire x1="-1.27" y1="2.54" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
 <wire x1="3.81" y1="2.54" x2="3.81" y2="-2.54" width="0.254" layer="94"/>
 <text x="-1.27" y="-2.54" size="1.27" layer="96" align="top-left">&gt;VALUE</text>
+</symbol>
+<symbol name="1-770969-0">
+<pin name="+3V3" x="0" y="2.54" length="middle" direction="pwr"/>
+<pin name="+5V" x="0" y="5.08" length="middle" direction="pwr"/>
+<pin name="+12V" x="0" y="7.62" length="middle" direction="pwr"/>
+<pin name="+170V" x="27.94" y="7.62" length="middle" direction="pwr" rot="R180"/>
+<pin name="GND" x="27.94" y="2.54" length="middle" direction="pas" rot="R180"/>
+<wire x1="5.08" y1="0" x2="5.08" y2="10.16" width="0.254" layer="94"/>
+<wire x1="5.08" y1="10.16" x2="22.86" y2="10.16" width="0.254" layer="94"/>
+<wire x1="22.86" y1="10.16" x2="22.86" y2="0" width="0.254" layer="94"/>
+<wire x1="22.86" y1="0" x2="5.08" y2="0" width="0.254" layer="94"/>
+<text x="10.16" y="10.16" size="1.27" layer="95">&gt;NAME</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -892,6 +920,25 @@
 </device>
 </devices>
 </deviceset>
+<deviceset name="1-770969-0" prefix="J">
+<gates>
+<gate name="G$1" symbol="1-770969-0" x="-12.7" y="-5.08"/>
+</gates>
+<devices>
+<device name="" package="1-770969-0">
+<connects>
+<connect gate="G$1" pin="+12V" pad="3"/>
+<connect gate="G$1" pin="+170V" pad="5"/>
+<connect gate="G$1" pin="+3V3" pad="1"/>
+<connect gate="G$1" pin="+5V" pad="2"/>
+<connect gate="G$1" pin="GND" pad="4 6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 <library name="Dane">
@@ -1121,6 +1168,11 @@
 <part name="GND15" library="Zach" deviceset="GND" device=""/>
 <part name="R1" library="Zach" deviceset="RESISTOR" device="0805" value="10k"/>
 <part name="P+10" library="Zach" deviceset="+3V3" device=""/>
+<part name="J3" library="Zach" deviceset="1-770969-0" device=""/>
+<part name="GND16" library="Zach" deviceset="GND" device=""/>
+<part name="P+11" library="Zach" deviceset="+170V" device=""/>
+<part name="P+12" library="Zach" deviceset="+12V" device=""/>
+<part name="P+13" library="Zach" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1207,6 +1259,19 @@
 <attribute name="VALUE" x="-17.78" y="68.58" size="1.778" layer="96" rot="R180" align="bottom-center"/>
 </instance>
 <instance part="GND9" gate="1" x="-17.78" y="15.24" smashed="yes"/>
+<instance part="J3" gate="G$1" x="-17.78" y="-38.1" smashed="yes">
+<attribute name="NAME" x="-7.62" y="-27.94" size="1.27" layer="95"/>
+</instance>
+<instance part="GND16" gate="1" x="10.16" y="-38.1" smashed="yes"/>
+<instance part="P+11" gate="G$1" x="10.16" y="-27.94" smashed="yes">
+<attribute name="VALUE" x="10.16" y="-25.4" size="1.778" layer="96" rot="R180" align="bottom-center"/>
+</instance>
+<instance part="P+12" gate="G$1" x="-17.78" y="-27.94" smashed="yes">
+<attribute name="VALUE" x="-17.78" y="-25.4" size="1.778" layer="96" rot="R180" align="bottom-center"/>
+</instance>
+<instance part="P+13" gate="G$1" x="-22.86" y="-30.48" smashed="yes">
+<attribute name="VALUE" x="-22.86" y="-27.94" size="1.778" layer="96" rot="R180" align="bottom-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -1270,6 +1335,10 @@
 <pinref part="VR1" gate="G$1" pin="VSS"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
+<segment>
+<pinref part="J3" gate="G$1" pin="GND"/>
+<pinref part="GND16" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="+12V" class="0">
 <segment>
@@ -1296,6 +1365,10 @@
 <junction x="86.36" y="66.04"/>
 <pinref part="P+3" gate="G$1" pin="+12V"/>
 </segment>
+<segment>
+<pinref part="J3" gate="G$1" pin="+12V"/>
+<pinref part="P+12" gate="G$1" pin="+12V"/>
+</segment>
 </net>
 <net name="N$4" class="0">
 <segment>
@@ -1319,6 +1392,10 @@
 <wire x1="78.74" y1="25.4" x2="78.74" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="25.4" x2="78.74" y2="25.4" width="0.1524" layer="91"/>
 <junction x="78.74" y="25.4"/>
+</segment>
+<segment>
+<pinref part="J3" gate="G$1" pin="+170V"/>
+<pinref part="P+11" gate="G$1" pin="+170V"/>
 </segment>
 </net>
 <net name="N$7" class="0">
@@ -1379,6 +1456,12 @@
 <wire x1="-17.78" y1="58.42" x2="-17.78" y2="63.5" width="0.1524" layer="91"/>
 <junction x="-17.78" y="58.42"/>
 <pinref part="P+5" gate="G$1" pin="+3V3"/>
+</segment>
+<segment>
+<pinref part="J3" gate="G$1" pin="+3V3"/>
+<wire x1="-17.78" y1="-35.56" x2="-22.86" y2="-35.56" width="0.1524" layer="91"/>
+<pinref part="P+13" gate="G$1" pin="+3V3"/>
+<wire x1="-22.86" y1="-35.56" x2="-22.86" y2="-33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="U/!D" class="0">
