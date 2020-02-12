@@ -295,7 +295,7 @@
 <package name="0805">
 <smd name="P$1" x="-0.9525" y="0" dx="1.2954" dy="0.7112" layer="1" rot="R90"/>
 <smd name="P$2" x="0.9525" y="0" dx="1.2954" dy="0.7112" layer="1" rot="R90"/>
-<text x="0" y="0.8636" size="0.254" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="0.8636" size="0.8128" layer="25" align="bottom-center">&gt;NAME</text>
 <wire x1="-1.524" y1="0.762" x2="1.524" y2="0.762" width="0.0762" layer="21"/>
 <wire x1="1.524" y1="0.762" x2="1.524" y2="-0.762" width="0.0762" layer="21"/>
 <wire x1="1.524" y1="-0.762" x2="-1.524" y2="-0.762" width="0.0762" layer="21"/>
@@ -1119,6 +1119,8 @@
 <part name="C8" library="Zach" deviceset="CAPACITOR" device="0805" value="10pF"/>
 <part name="GND14" library="Zach" deviceset="GND" device=""/>
 <part name="GND15" library="Zach" deviceset="GND" device=""/>
+<part name="R1" library="Zach" deviceset="RESISTOR" device="0805" value="10k"/>
+<part name="P+10" library="Zach" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1462,6 +1464,13 @@
 </instance>
 <instance part="GND14" gate="1" x="86.36" y="22.86" smashed="yes"/>
 <instance part="GND15" gate="1" x="104.14" y="22.86" smashed="yes"/>
+<instance part="R1" gate="G$1" x="12.7" y="38.1" smashed="yes" rot="R90">
+<attribute name="NAME" x="10.16" y="45.72" size="1.778" layer="95" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="17.78" y="45.72" size="1.778" layer="96" rot="R90" align="bottom-center"/>
+</instance>
+<instance part="P+10" gate="G$1" x="12.7" y="58.42" smashed="yes">
+<attribute name="VALUE" x="12.7" y="60.96" size="1.778" layer="96" rot="R180" align="bottom-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -1496,6 +1505,11 @@
 <wire x1="119.38" y1="58.42" x2="119.38" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="J2" gate="G$1" pin="+3V3"/>
 <wire x1="119.38" y1="55.88" x2="121.92" y2="55.88" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R1" gate="G$1" pin="P$2"/>
+<pinref part="P+10" gate="G$1" pin="+3V3"/>
+<wire x1="12.7" y1="55.88" x2="12.7" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -1624,8 +1638,10 @@
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PC6"/>
-<wire x1="33.02" y1="35.56" x2="20.32" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="35.56" x2="12.7" y2="35.56" width="0.1524" layer="91"/>
 <label x="20.32" y="35.56" size="1.778" layer="95"/>
+<pinref part="R1" gate="G$1" pin="P$1"/>
+<wire x1="12.7" y1="35.56" x2="12.7" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="XTAL2" class="0">
