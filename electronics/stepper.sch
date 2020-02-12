@@ -1365,6 +1365,11 @@
 </sheet>
 </sheets>
 <errors>
+<approved hash="104,1,30.48,27.94,A1,VM,+12V,,,"/>
+<approved hash="104,1,35.56,27.94,A1,VIO,+3V3,,,"/>
+<approved hash="104,1,-50.8,45.72,U1,VCC,+3V3,,,"/>
+<approved hash="104,1,-48.26,45.72,U1,AVCC,+3V3,,,"/>
+<approved hash="104,1,-45.72,45.72,U1,AREF,+3V3,,,"/>
 <approved hash="204,1,20.32,76.2,J1,+5V,,,,"/>
 <approved hash="204,1,48.26,78.74,J1,+170V,,,,"/>
 </errors>
