@@ -3,9 +3,11 @@ project(magnetic-chess)
 set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(magnetic-chess
-    main.c
-    rpc/chess_service.pb.cc
     rpc/chess_service.grpc.pb.cc
+    rpc/chess_service.pb.cc
+    logic-listener.c
+    logic.c
+    main.c
 )
 
 add_custom_command(
