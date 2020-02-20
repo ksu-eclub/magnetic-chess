@@ -1,0 +1,71 @@
+syntax = "proto2";
+import "google/protobuf/empty.proto";
+package magnetic_chess;
+
+service ChessService {
+    rpc ResetBoard(google.protobuf.Empty) returns(google.protobuf.Empty);
+    rpc GetMoves(GetMovesRequest) returns(GetMovesResponse);
+    rpc Move(MoveRequest) returns(MoveResponse);
+    rpc RestorePiece(RestorePieceRequest) returns(RestorePieceResponse);
+    rpc StreamBoard(google.protobuf.Empty) returns(stream GameState);
+}
+
+message Coordinate {
+    required int32 x = 1;
+    required int32 y = 2;
+}
+
+message GetMovesRequest {
+    required Coordinate tile = 1;
+}
+
+message GetMovesResponse {
+    repeated Coordinate destinations = 1;
+}
+
+message MoveRequest {
+    required Coordinate from = 1;
+    required Coordinate to = 2;
+}
+
+message MoveResponse {
+    enum Error {
+        SUCCESS = 0;
+        NOT_VALID = 1;
+        IN_CHECK = 2;
+    }
+    required Error error = 1;
+}
+
+message RestorePieceRequest {
+    enum Type {
+        ROOK = 0;
+        KNIGHT = 1;
+        BISHOP = 2;
+        QUEEN = 3;
+    }
+    required Type type = 1;
+}
+
+message RestorePieceResponse {
+    enum Error {
+        SUCCESS = 0;
+        NONE_GONE = 1;
+        INVALID_STATE = 2;
+    }
+    required Error error = 1;
+}
+
+message GameState {
+    enum State {
+        UNKNOWN = 0;
+        PLAYER_A_TURN = 1;
+        PLAYER_B_TURN = 2;
+        PLAYER_A_WON = 3;
+        PLAYER_B_WON = 4;
+        PLAYER_A_RESTORE = 5;
+        PLAYER_B_RESTORE = 6;
+    }
+    required State state = 1;
+    required string board = 2;
+}
