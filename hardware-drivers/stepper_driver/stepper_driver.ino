@@ -1,8 +1,7 @@
 #include <Wire.h>
-#include "config.h"
-#include "configs.h"
 
 #define SERIAL_BAUD 115200
+#define SLAVE_ADDRESS 0x03
 
 void on_request(void);
 void on_receive(int count);
