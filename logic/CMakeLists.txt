@@ -5,9 +5,16 @@ set(CMAKE_BUILD_TYPE Debug)
 add_executable(magnetic-chess
     rpc/chess_service.grpc.pb.cc
     rpc/chess_service.pb.cc
+    rpc/ChessServiceImpl.cpp
+    rpc/rpc.cpp
     logic-listener.c
     logic.c
     main.c
+)
+
+include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_command(
