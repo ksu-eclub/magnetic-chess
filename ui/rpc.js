@@ -3,19 +3,68 @@
 (function() {
     var with_rpc = {
         "reset_board": function() {
-
+            rpcService.resetBoard(new Empty(), {}, function(err, res) {
+                if (err) {
+                    console.error(err);
+                }
+            });
         },
         "get_moves": function(from, callback) {
-
+            var tile = new Coordinate();
+            tile.setX(from[0]);
+            tile.setY(from[1]);
+            var req = new GetMovesRequest();
+            req.setTile(tile);
+            rpcService.getMoves(req, {}, function(err, res) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log(res);
+                }
+            });
         },
         "move": function(from, to, callback) {
-
+            var f = new Coordinate();
+            f.setX(from[0]);
+            f.setY(from[1]);
+            var t = new Coordinate();
+            t.setX(to[0]);
+            t.setY(to[1]);
+            var req = new MoveRequest();
+            req.setFrom(f);
+            req.setTo(t);
+            rpcService.move(req, {}, function(err, res) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log(res);
+                }
+            });
         },
         "restore": function(type, callback) {
-
+            var req = new RestorePieceRequest();
+            req.setType(type);
+            rpcService.restorePiece(req, {}, function(err, res) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log(res);
+                }
+            });
         },
         "init": function() {
-            console.error("RPC methods are not implemented!");
+            window.ChessServiceClient = window.grpc.ChessServiceClient;
+            [
+                "Coordinate",
+                "GetMovesRequest",
+                "GetMovesResponse",
+                "MoveRequest",
+                "MoveResponse",
+                "RestorePieceRequest",
+                "RestorePieceResponse",
+                "GameState"
+            ].forEach(f => window[f] = window.pb[f]);
+            window.rpcService = new ChessServiceClient("http://localhost:8080");
         }
     };
     var without_rpc = {
