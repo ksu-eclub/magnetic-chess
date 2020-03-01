@@ -71,7 +71,8 @@
                 var stream = rpcService.streamBoard(new Empty(), {});
                 stream.on("data", function(res) {
                     ++dataCount;
-                    console.log(res);
+                    update_board(res.getBoard());
+                    update_state(res.getState());
                 });
                 stream.on("error", function(err) {
                     if (dataCount > 0 && err.code === 2) {
