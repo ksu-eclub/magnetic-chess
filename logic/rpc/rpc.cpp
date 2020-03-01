@@ -3,6 +3,7 @@
 #include <rpc/chess_service.pb.h>
 #include <rpc/chess_service.grpc.pb.h>
 #include "ChessServiceImpl.hpp"
+#include "norpc.h"
 #include "rpc.h"
 #ifndef NO_GRPC
 #include <grpcpp/server.h>
@@ -12,7 +13,7 @@
 extern "C" void rpc_init(void) {
 #ifdef NO_GRPC
 
-    puts("Running without RPC!");
+    norpc_init();
 
 #else
 

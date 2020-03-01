@@ -6,6 +6,7 @@ add_executable(magnetic-chess
     rpc/chess_service.grpc.pb.cc
     rpc/chess_service.pb.cc
     rpc/ChessServiceImpl.cpp
+    rpc/norpc.c
     rpc/rpc.cpp
     logic-listener.c
     logic.c
