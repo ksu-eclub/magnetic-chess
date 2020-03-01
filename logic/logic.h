@@ -1,5 +1,8 @@
 #ifndef LOGIC_H
 #define LOGIC_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct {
     int x;
@@ -62,4 +65,7 @@ void on_change(color_t turn, state_t state, char board[64]);
 void add_listener(board_listener_t listener, void *context, void **ref);
 void remove_listener(void *ref);
 
+#ifdef __cplusplus
+}
+#endif
 #endif

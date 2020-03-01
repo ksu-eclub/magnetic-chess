@@ -19,7 +19,7 @@
                 if (err) {
                     console.error(err);
                 } else {
-                    console.log(res);
+                    callback(res.getDestinationsList().map(x => [ x.getX(), x.getY() ]));
                 }
             });
         },
@@ -37,7 +37,7 @@
                 if (err) {
                     console.error(err);
                 } else {
-                    console.log(res);
+                    callback(res.getError());
                 }
             });
         },
@@ -48,7 +48,7 @@
                 if (err) {
                     console.error(err);
                 } else {
-                    console.log(res);
+                    callback(res.getError());
                 }
             });
         },
