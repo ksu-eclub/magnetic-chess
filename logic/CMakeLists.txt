@@ -3,11 +3,17 @@ project(magnetic-chess)
 set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(magnetic-chess
+    hardware/i2c.c
+    hardware/leds.c
+    hardware/magnet.c
+    hardware/steppers.c
     rpc/chess_service.grpc.pb.cc
     rpc/chess_service.pb.cc
     rpc/ChessServiceImpl.cpp
     rpc/norpc.c
     rpc/rpc.cpp
+    gantry.c
+    leds.c
     logic-listener.c
     logic.c
     main.c
