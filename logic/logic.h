@@ -56,6 +56,7 @@ typedef enum {
 } restore_error_t;
 
 typedef void board_listener_t(color_t turn, state_t state, char board[64], void *context);
+typedef void selection_listener_t(color_t turn, state_t state, coordinate_t coord, void *context);
 
 void reset_board(void);
 int get_moves(coordinate_t from, coordinate_t *tos, int tos_count);
@@ -64,6 +65,9 @@ restore_error_t restore(piece_type_t type);
 void on_change(color_t turn, state_t state, char board[64]);
 void add_listener(board_listener_t listener, void *context, void **ref);
 void remove_listener(void *ref);
+void on_selection(color_t turn, state_t state, coordinate_t coord, void *context);
+void add_selection_listener(selection_listener_t listener, void *context, void **ref);
+void remove_selection_listener(void *ref);
 
 #ifdef __cplusplus
 }
