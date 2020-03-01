@@ -65,6 +65,24 @@
                 "GameState"
             ].forEach(f => window[f] = window.pb[f]);
             window.rpcService = new ChessServiceClient("http://localhost:8080");
+            var streamFunc = function() {
+                console.log("[RPC] Opening stream");
+                var dataCount = 0;
+                var stream = rpcService.streamBoard(new Empty(), {});
+                stream.on("data", function(res) {
+                    ++dataCount;
+                    console.log(res);
+                });
+                stream.on("error", function(err) {
+                    if (dataCount > 0 && err.code === 2) {
+                        streamFunc();
+                    } else {
+                        console.error(err);
+                    }
+                });
+                stream.on("end", streamFunc);
+            };
+            streamFunc();
         }
     };
     var without_rpc = {

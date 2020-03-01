@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <rpc/chess_service.pb.h>
 #include <rpc/chess_service.grpc.pb.h>
 #include "ChessServiceImpl.hpp"
@@ -26,6 +27,14 @@ grpc::Status ChessServiceImpl::RestorePiece(grpc::ServerContext *context, const 
 
 grpc::Status ChessServiceImpl::StreamBoard(grpc::ServerContext *context, const google::protobuf::Empty *request, grpc::ServerWriter<magnetic_chess::GameState> *writer) {
     puts("StreamBoard");
+    while (!context->IsCancelled()) {
+        magnetic_chess::GameState state;
+        state.set_state(magnetic_chess::GameState_State::GameState_State_UNKNOWN);
+        state.set_board("abc123");
+        writer->Write(state);
+        sleep(1);
+    }
+    puts("Stream Closed");
     return grpc::Status::OK;
 }
 
