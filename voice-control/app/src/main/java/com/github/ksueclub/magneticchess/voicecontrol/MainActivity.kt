@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.text).apply {
                 text = str
             }
-            Log.d("MainActivity", str)
+            if (str != null) {
+                Log.d("MainActivity", str)
+            }
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
