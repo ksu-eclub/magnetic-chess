@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Magnetic Chess Voice Control</string>
+    <string name="test_voice_control">Test Voice Control</string>
 </resources>
