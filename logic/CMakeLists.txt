@@ -77,5 +77,6 @@ if (PKG_PROTOBUF_FOUND AND PKG_GRPC_FOUND)
         magnetic-chess PUBLIC
         PkgConfig::PKG_PROTOBUF
         PkgConfig::PKG_GRPC
+	atomic
     )
 endif()
