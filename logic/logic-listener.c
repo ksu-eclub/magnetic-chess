@@ -12,7 +12,7 @@ void remove_listener(void *ref) {
     // TODO
 }
 
-void on_selection(color_t turn, state_t state, coordinate_t coord, void *context) {
+void on_selection(color_t turn, state_t state, coordinate_t coord) {
     // TODO
 }
 
