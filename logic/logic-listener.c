@@ -1,25 +1,22 @@
 #include "logic.h"
 
-/*
- * This file implements two isolated listeners.  on_change and on_selection are very similar, as are add_listener and
- * add_selection_listener and remote_listener and remove_selection_listener.  When on_change is called, it will call all
- * the functions given to the add_listener function with the arguments given to the on_change method (turn, state, and
- * board), in addition to the context variable given to that specific call to add_listener.  Inside add_listener, it
- * also sets *ref with some value so that if that value is give to remove_listener, following calls to on_change will no
- * longer call that function.
- */
+// TODO Define a list of {board_listener_t, context}
 
 void on_change(color_t turn, state_t state, char board[64]) {
-    // TODO
+    // TODO For each listener in the list, call it.
+    //      The first three arguments to the listener are the three arguments to this function (turn, state, board)
+    //      The last argument to the listener is it's {context}
 }
 
 void add_listener(board_listener_t listener, void *context, void **ref) {
-    // TODO
+    // TODO Add {listener, context} to the list and set {*ref} to the node in the list that was just added
 }
 
 void remove_listener(void *ref) {
-    // TODO
+    // TODO Remove the node {ref} from the list
 }
+
+/* These are the same as above, but with different variables */
 
 void on_selection(color_t turn, state_t state, coordinate_t coord) {
     // TODO
