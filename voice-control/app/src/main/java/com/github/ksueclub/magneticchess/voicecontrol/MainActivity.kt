@@ -11,7 +11,9 @@ import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import kotlin.experimental.and
 
 private const val SPEECH_REQUEST_CODE = 0
 private const val BLUETOOTH_REQUEST_CODE = 1
@@ -66,6 +68,36 @@ class MainActivity : AppCompatActivity() {
                 Log.w("MainActivity", "Failure in characteristic read")
                 return
             }
+            val state = characteristic?.value?.first()
+            if (state != null) {
+                white = (state and ABI.StateWhite) != 0.toByte()
+                purple = (state and ABI.StatePurple) != 0.toByte()
+                when {
+                    white == purple -> {
+                        findViewById<ConstraintLayout>(R.id.layout).background = getDrawable(R.drawable.turn_unknown)
+                    }
+                    white -> {
+                        findViewById<ConstraintLayout>(R.id.layout).background = getDrawable(R.drawable.turn_white)
+                    }
+                    else -> {
+                        findViewById<ConstraintLayout>(R.id.layout).background = getDrawable(R.drawable.turn_purple)
+                    }
+                }
+                when {
+                    (state and ABI.StateInvalid) != 0.toByte() -> {
+                        runOnUiThread {
+                            Toast.makeText(this@MainActivity, "Invalid move", Toast.LENGTH_LONG).show()
+                        }
+                        gatt?.readCharacteristic(stateChar)
+                    }
+                    (state and ABI.StateTurn) != 0.toByte() -> {
+                        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                        }
+                        startActivityForResult(intent, SPEECH_REQUEST_CODE)
+                    }
+                }
+            }
         }
 
         override fun onCharacteristicWrite(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic?, status: Int) {
@@ -74,6 +106,7 @@ class MainActivity : AppCompatActivity() {
                 Log.w("MainActivity", "Failure in characteristic write")
                 return
             }
+            gatt?.readCharacteristic(stateChar)
         }
     }
 
@@ -85,18 +118,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gatt: BluetoothGatt
     private var stateChar: BluetoothGattCharacteristic? = null
     private var moveChar: BluetoothGattCharacteristic? = null
+    private var white = false
+    private var purple = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         startActivityForResult(Intent(this, BTScanActivity::class.java), BLUETOOTH_REQUEST_CODE)
-    }
-
-    fun testVoiceControl(@Suppress("UNUSED_PARAMETER") view: View?) {
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-        }
-        startActivityForResult(intent, SPEECH_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -106,12 +134,21 @@ class MainActivity : AppCompatActivity() {
                     val str: String? = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.let {
                         it[0]
                     }
-                    findViewById<TextView>(R.id.text).apply {
-                        text = str
-                    }
                     if (str != null) {
                         Log.d("MainActivity", str)
+                        val arr = ByteArray(3)
+                        if (MoveTranscoder.transcode(str, white, purple, arr)) {
+                            moveChar?.value = arr
+                            gatt.writeCharacteristic(moveChar)
+                            return
+                        } else {
+                            Toast.makeText(this, "Unable to understand move", Toast.LENGTH_LONG).show()
+                        }
                     }
+                    val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                        putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                    }
+                    startActivityForResult(intent, SPEECH_REQUEST_CODE)
                 }
                 BLUETOOTH_REQUEST_CODE -> {
                     val mac = data?.getStringExtra(RESULT_MAC_ADDRESS)
