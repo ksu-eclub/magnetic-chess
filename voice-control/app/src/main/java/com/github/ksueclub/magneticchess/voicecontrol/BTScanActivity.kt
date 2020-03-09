@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-public const val RESULT_MAC_ADDRESS = "mac"
+const val RESULT_MAC_ADDRESS = "mac"
 private const val BLUETOOTH_ENABLE_REQUEST_CODE = 0
 private const val PERMISSION_REQUEST_CODE = 1
 
@@ -38,7 +38,7 @@ class BTScanActivity : AppCompatActivity() {
         }
 
         override fun onScanFailed(errorCode: Int) {
-            Toast.makeText(this@BTScanActivity, String.format("Unable to run Bluetooth scan: %d", errorCode), Toast.LENGTH_LONG).show()
+            Toast.makeText(this@BTScanActivity, String.format(getString(R.string.bt_scan_error), errorCode), Toast.LENGTH_LONG).show()
         }
 
         override fun onBatchScanResults(results: MutableList<ScanResult>?) {
@@ -51,7 +51,7 @@ class BTScanActivity : AppCompatActivity() {
     private fun onSelect(dev: BluetoothDevice) {
         scanner.stopScan(scanCallback)
         val data = Intent()
-        data.putExtra(RESULT_MAC_ADDRESS, dev.MACAddress)
+        data.putExtra(RESULT_MAC_ADDRESS, dev.macAddress)
         setResult(Activity.RESULT_OK, data)
         finish()
     }
@@ -84,7 +84,6 @@ class BTScanActivity : AppCompatActivity() {
             adapter.isEnabled -> {
                 scanner = adapter.bluetoothLeScanner
                 val filters = listOf(ScanFilter.Builder().setServiceUuid(ParcelUuid(ABI.ServiceUUID)).build())
-                //val filters = listOf<ScanFilter>()
                 val settings = ScanSettings.Builder().setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES).build()
                 scanner.startScan(filters, settings, scanCallback)
             }

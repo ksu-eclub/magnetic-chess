@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 when {
                     (state and ABI.StateInvalid) != 0.toByte() -> {
                         runOnUiThread {
-                            Toast.makeText(this@MainActivity, "Invalid move", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@MainActivity, R.string.invalid_move, Toast.LENGTH_LONG).show()
                         }
                         gatt?.readCharacteristic(stateChar)
                     }
@@ -137,12 +137,12 @@ class MainActivity : AppCompatActivity() {
                     if (str != null) {
                         Log.d("MainActivity", str)
                         val arr = ByteArray(3)
-                        if (MoveTranscoder.transcode(str, white, purple, arr)) {
+                        if (MoveTranscoder.transcode(this, str, white, purple, arr)) {
                             moveChar?.value = arr
                             gatt.writeCharacteristic(moveChar)
                             return
                         } else {
-                            Toast.makeText(this, "Unable to understand move", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, R.string.unable_to_understand_move, Toast.LENGTH_LONG).show()
                         }
                     }
                     val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {

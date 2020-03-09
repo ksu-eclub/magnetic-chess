@@ -27,13 +27,13 @@ class BluetoothDeviceAdapter(recycler: RecyclerView, callback: KFunction1<Blueto
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dev = list[position]
         holder.view.apply {
-            if (dev.DeviceName == null) {
-                findViewById<TextView>(R.id.device_name).text = "(unknown)"
+            if (dev.deviceName == null) {
+                findViewById<TextView>(R.id.device_name).text = context.getString(R.string.unknown_device_name)
             } else {
-                findViewById<TextView>(R.id.device_name).text = dev.DeviceName
+                findViewById<TextView>(R.id.device_name).text = dev.deviceName
             }
-            findViewById<TextView>(R.id.mac_address).text = dev.MACAddress
-            findViewById<TextView>(R.id.rssi).text = String.format("%d dBm", dev.RSSI)
+            findViewById<TextView>(R.id.mac_address).text = dev.macAddress
+            findViewById<TextView>(R.id.rssi).text = String.format(holder.view.context.getString(R.string.dBm), dev.rssi)
         }
     }
 
@@ -42,11 +42,11 @@ class BluetoothDeviceAdapter(recycler: RecyclerView, callback: KFunction1<Blueto
     }
 
     fun add(dev: BluetoothDevice) {
-        val old = list.firstOrNull { it.MACAddress == dev.MACAddress }
+        val old = list.firstOrNull { it.macAddress == dev.macAddress }
         if (old == null) {
             list.add(dev)
         } else {
-            old.RSSI = dev.RSSI
+            old.rssi = dev.rssi
         }
         notifyDataSetChanged()
     }

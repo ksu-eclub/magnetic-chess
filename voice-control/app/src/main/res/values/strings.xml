@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Magnetic Chess Voice Control</string>
-    <string name="test_voice_control">Test Voice Control</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="invalid_move">Invalid move</string>
+    <string name="unable_to_understand_move">Unable to understand move</string>
+    <string name="bt_scan_error">Unable to run Bluetooth scan: %d</string>
+    <string name="dBm">%d dBm</string>
+    <string name="unknown_device_name">(unknown)</string>
 </resources>

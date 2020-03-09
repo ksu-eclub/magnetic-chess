@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fluff">please move my um uh</string>
+    <string name="prepTo">to two too 2</string>
+    <string name="prepFrom">from</string>
+    <string name="row1">1 one won run</string>
+    <string name="row2">2 two too to</string>
+    <string name="row3">3 three tree</string>
+    <string name="row4">4 four for</string>
+    <string name="row5">5 five</string>
+    <string name="row6">6 six</string>
+    <string name="row7">7 seven</string>
+    <string name="row8">8 eight</string>
+    <string name="col1">a alpha alfa</string>
+    <string name="col2">b be bee bravo</string>
+    <string name="col3">c see sea charlie</string>
+    <string name="col4">d dee delta</string>
+    <string name="col5">e echo</string>
+    <string name="col6">f foxtrot</string>
+    <string name="col7">g golf</string>
+    <string name="col8">h hotel</string>
+    <string name="rook">rook</string>
+    <string name="knight">knight night</string>
+    <string name="bishop">bishop</string>
+    <string name="queen">queen</string>
+    <string name="king">king</string>
+    <string name="pawn">pawn</string>
+</resources>

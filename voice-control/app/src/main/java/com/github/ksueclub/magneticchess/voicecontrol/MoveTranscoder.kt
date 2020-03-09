@@ -1,54 +1,56 @@
 package com.github.ksueclub.magneticchess.voicecontrol
 
+import android.content.Context
 import android.util.Log
+import java.util.*
 import kotlin.experimental.or
 
 object MoveTranscoder {
-    private val fluffWords = arrayOf("please", "move", "my", "um", "uh")
-    private val prepositionTo = arrayOf("to", "two", "too", "2")
-    private val prepositionFrom = arrayOf("from")
-    private val rowWords = arrayOf(
-        arrayOf("1", "one", "won", "run"),
-        arrayOf("2", "two", "too", "to"),
-        arrayOf("3", "three", "tree"),
-        arrayOf("4", "four", "for"),
-        arrayOf("5", "five"),
-        arrayOf("6", "six"),
-        arrayOf("7", "seven"),
-        arrayOf("8", "eight", "ate")
-    )
-    private val colWords = arrayOf(
-        arrayOf("a", "alpha", "alfa"),
-        arrayOf("b", "be", "bee", "bravo"),
-        arrayOf("c", "see", "sea", "charlie"),
-        arrayOf("d", "dee", "delta"),
-        arrayOf("e", "echo"),
-        arrayOf("f", "foxtrot"),
-        arrayOf("g", "golf")
-    )
-    private val pieceWords = arrayOf(
-        arrayOf("rook"),
-        arrayOf("knight", "night"),
-        arrayOf("bishop"),
-        arrayOf("queen"),
-        arrayOf("king"),
-        arrayOf("pawn")
-    )
-
     enum class State {
         Initial,
         AfterTo,
         AfterFrom,
     }
 
-    fun transcode(sentence: String, white: Boolean, purple: Boolean, arr: ByteArray): Boolean {
+    fun transcode(context: Context, sentence: String, white: Boolean, purple: Boolean, arr: ByteArray): Boolean {
+        val fluffWords = context.getString(R.string.fluff).split(' ')
+        val prepositionTo = context.getString(R.string.prepTo).split(' ')
+        val prepositionFrom = context.getString(R.string.prepFrom).split(' ')
+        val rowWords = arrayOf(
+            context.getString(R.string.row1).split(' '),
+            context.getString(R.string.row2).split(' '),
+            context.getString(R.string.row3).split(' '),
+            context.getString(R.string.row4).split(' '),
+            context.getString(R.string.row5).split(' '),
+            context.getString(R.string.row6).split(' '),
+            context.getString(R.string.row7).split(' '),
+            context.getString(R.string.row8).split(' ')
+        )
+        val colWords = arrayOf(
+            context.getString(R.string.col1).split(' '),
+            context.getString(R.string.col2).split(' '),
+            context.getString(R.string.col3).split(' '),
+            context.getString(R.string.col4).split(' '),
+            context.getString(R.string.col5).split(' '),
+            context.getString(R.string.col6).split(' '),
+            context.getString(R.string.col7).split(' '),
+            context.getString(R.string.col8).split(' ')
+        )
+        val pieceWords = arrayOf(
+            context.getString(R.string.rook).split(' '),
+            context.getString(R.string.knight).split(' '),
+            context.getString(R.string.bishop).split(' '),
+            context.getString(R.string.queen).split(' '),
+            context.getString(R.string.king).split(' '),
+            context.getString(R.string.pawn).split(' ')
+        )
         val words = mutableListOf<String>()
         sentence.splitToSequence(' ').forEach {_it ->
             var part = _it
             while (part.any { it in '0'..'9' }) {
                 val first = part.takeWhile { it !in '0'..'9' }
                 if (first.isNotEmpty()) {
-                    words.add(first.toLowerCase())
+                    words.add(first.toLowerCase(Locale.getDefault()))
                 }
                 part = part.substring(first.length)
                 val num = part.takeWhile { it in '0'..'9' }
@@ -56,7 +58,7 @@ object MoveTranscoder {
                 part = part.substring(num.length)
             }
             if (part.isNotEmpty()) {
-                words.add(part.toLowerCase())
+                words.add(part.toLowerCase(Locale.getDefault()))
             }
         }
         var state = State.Initial
