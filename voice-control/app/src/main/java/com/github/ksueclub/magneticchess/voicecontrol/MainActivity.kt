@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
@@ -17,6 +18,8 @@ private const val BLUETOOTH_REQUEST_CODE = 1
 
 class MainActivity : AppCompatActivity() {
     private val gattCallback = object : BluetoothGattCallback() {
+        var tries = 0
+
         override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
             when (newState) {
                 BluetoothProfile.STATE_CONNECTED -> {
@@ -25,8 +28,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 BluetoothProfile.STATE_DISCONNECTED -> {
                     Log.i("MainActivity", "Disconnected from GATT server.")
+                    tries = 0
                     gatt?.connect()
-                    findViewById<ProgressBar>(R.id.progress).visibility = View.VISIBLE
+                    runOnUiThread {
+                        findViewById<ProgressBar>(R.id.progress).visibility = View.VISIBLE
+                    }
                 }
             }
         }
@@ -34,9 +40,28 @@ class MainActivity : AppCompatActivity() {
         override fun onServicesDiscovered(gatt: BluetoothGatt?, status: Int) {
             Log.d("MainActivity", "Services discovered.")
             findViewById<ProgressBar>(R.id.progress).visibility = View.INVISIBLE
+            val service = gatt?.getService(ABI.ServiceUUID)
+            stateChar = service?.getCharacteristic(ABI.StateUUID)
+            moveChar = service?.getCharacteristic(ABI.MoveUUID)
+            if (stateChar == null || moveChar == null) {
+                if (tries < 10) {
+                    ++tries
+                    runOnUiThread {
+                        Handler().postDelayed({
+                            gatt?.javaClass?.getMethod("refresh")?.invoke(gatt)
+                            gatt?.discoverServices()
+                        }, 100)
+                    }
+                } else {
+                    startActivityForResult(Intent(this@MainActivity, BTScanActivity::class.java), BLUETOOTH_REQUEST_CODE)
+                }
+            } else {
+                gatt?.readCharacteristic(stateChar)
+            }
         }
 
         override fun onCharacteristicRead(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic?, status: Int) {
+            Log.d("MainActivity", "onCharacteristicRead")
             if (status != BluetoothGatt.GATT_SUCCESS) {
                 Log.w("MainActivity", "Failure in characteristic read")
                 return
@@ -44,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onCharacteristicWrite(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic?, status: Int) {
+            Log.d("MainActivity", "onCharacteristicWrite")
             if (status != BluetoothGatt.GATT_SUCCESS) {
                 Log.w("MainActivity", "Failure in characteristic write")
                 return
@@ -57,6 +83,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var gatt: BluetoothGatt
+    private var stateChar: BluetoothGattCharacteristic? = null
+    private var moveChar: BluetoothGattCharacteristic? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

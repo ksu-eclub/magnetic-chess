@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.ParcelUuid
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -82,8 +83,8 @@ class BTScanActivity : AppCompatActivity() {
             }
             adapter.isEnabled -> {
                 scanner = adapter.bluetoothLeScanner
-                //val filters = listOf(ScanFilter.Builder().setServiceUuid(ABI.ServiceUUID).build())
-                val filters = listOf<ScanFilter>()
+                val filters = listOf(ScanFilter.Builder().setServiceUuid(ParcelUuid(ABI.ServiceUUID)).build())
+                //val filters = listOf<ScanFilter>()
                 val settings = ScanSettings.Builder().setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES).build()
                 scanner.startScan(filters, settings, scanCallback)
             }
