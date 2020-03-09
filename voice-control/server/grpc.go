@@ -30,6 +30,7 @@ func grpcInit() {
 	conn, err = grpc.Dial("127.0.0.1:50051", grpc.WithInsecure())
 	if err != nil {
 		errCh <- err
+		return
 	}
 	log.Info("Connected to GRPC server.")
 	client = magnetic_chess.NewChessServiceClient(conn)
