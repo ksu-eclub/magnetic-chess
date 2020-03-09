@@ -15,6 +15,8 @@ extern "C" void chess_service_impl_listener_proxy(color_t turn, state_t state, c
 
 ChessServiceImpl::ChessServiceImpl() {
     memset(boardBuf, 0, 65);
+    gameState.set_board(boardBuf);
+    gameState.set_state(magnetic_chess::GameState_State::GameState_State_UNKNOWN);
     void *tmp;
     add_listener(chess_service_impl_listener_proxy, this, &tmp);
 }
