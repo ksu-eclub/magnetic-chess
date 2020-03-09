@@ -1,21 +1,67 @@
 package com.github.ksueclub.magneticchess.voicecontrol
 
 import android.app.Activity
+import android.bluetooth.*
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 
 private const val SPEECH_REQUEST_CODE = 0
+private const val BLUETOOTH_REQUEST_CODE = 1
 
 class MainActivity : AppCompatActivity() {
+    private val gattCallback = object : BluetoothGattCallback() {
+        override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
+            when (newState) {
+                BluetoothProfile.STATE_CONNECTED -> {
+                    Log.i("MainActivity", "Connected to GATT server.")
+                    gatt?.discoverServices()
+                }
+                BluetoothProfile.STATE_DISCONNECTED -> {
+                    Log.i("MainActivity", "Disconnected from GATT server.")
+                    gatt?.connect()
+                    findViewById<ProgressBar>(R.id.progress).visibility = View.VISIBLE
+                }
+            }
+        }
+
+        override fun onServicesDiscovered(gatt: BluetoothGatt?, status: Int) {
+            Log.d("MainActivity", "Services discovered.")
+            findViewById<ProgressBar>(R.id.progress).visibility = View.INVISIBLE
+        }
+
+        override fun onCharacteristicRead(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic?, status: Int) {
+            if (status != BluetoothGatt.GATT_SUCCESS) {
+                Log.w("MainActivity", "Failure in characteristic read")
+                return
+            }
+        }
+
+        override fun onCharacteristicWrite(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic?, status: Int) {
+            if (status != BluetoothGatt.GATT_SUCCESS) {
+                Log.w("MainActivity", "Failure in characteristic write")
+                return
+            }
+        }
+    }
+
+    private val adapter: BluetoothAdapter by lazy(LazyThreadSafetyMode.NONE) {
+        val manager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+        manager.adapter
+    }
+
+    private lateinit var gatt: BluetoothGatt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        startActivityForResult(Intent(this, BTScanActivity::class.java), BLUETOOTH_REQUEST_CODE)
     }
 
     fun testVoiceControl(@Suppress("UNUSED_PARAMETER") view: View?) {
@@ -26,16 +72,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val str: String? = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.let {
-                it[0]
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                SPEECH_REQUEST_CODE -> {
+                    val str: String? = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.let {
+                        it[0]
+                    }
+                    findViewById<TextView>(R.id.text).apply {
+                        text = str
+                    }
+                    if (str != null) {
+                        Log.d("MainActivity", str)
+                    }
+                }
+                BLUETOOTH_REQUEST_CODE -> {
+                    val mac = data?.getStringExtra(RESULT_MAC_ADDRESS)
+                    if (mac != null) {
+                        val device = adapter.getRemoteDevice(mac)
+                        gatt = device.connectGatt(this, false, gattCallback)
+                    } else {
+                        finish()
+                    }
+                }
             }
-            findViewById<TextView>(R.id.text).apply {
-                text = str
-            }
-            if (str != null) {
-                Log.d("MainActivity", str)
-            }
+        } else {
+            finish()
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
