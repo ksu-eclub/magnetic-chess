@@ -4,7 +4,7 @@ import (
 	"github.com/paypal/gatt"
 )
 
-var state = stateWhite | stateTurn
+var state = stateUnknown
 
 func handleState(rsp gatt.ResponseWriter, req *gatt.ReadRequest) {
 	rsp.Write([]byte{byte(state)})
