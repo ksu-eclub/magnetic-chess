@@ -7,8 +7,8 @@ add_executable(magnetic-chess
     hardware/leds.c
     hardware/magnet.c
     hardware/steppers.c
-    rpc/chess_service.grpc.pb.cc
-    rpc/chess_service.pb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/rpc/chess_service.grpc.pb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/rpc/chess_service.grpc.pb.cc
     rpc/ChessServiceImpl.cpp
     rpc/norpc.c
     rpc/rpc.cpp

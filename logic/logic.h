@@ -55,8 +55,8 @@ typedef enum {
     re_invalid_state = 2
 } restore_error_t;
 
-typedef void board_listener_t(color_t turn, state_t state, char board[64], void *context);
-typedef void selection_listener_t(color_t turn, state_t state, coordinate_t coord, void *context);
+typedef void (*board_listener_t)(color_t turn, state_t state, char board[64], void *context);
+typedef void (*selection_listener_t)(color_t turn, state_t state, coordinate_t coord, void *context);
 
 void reset_board(void);
 int get_moves(coordinate_t from, coordinate_t *tos, int tos_count);
