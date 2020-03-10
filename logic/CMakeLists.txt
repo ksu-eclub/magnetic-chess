@@ -8,7 +8,7 @@ add_executable(magnetic-chess
     hardware/magnet.c
     hardware/steppers.c
     ${CMAKE_CURRENT_SOURCE_DIR}/rpc/chess_service.grpc.pb.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/rpc/chess_service.grpc.pb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/rpc/chess_service.pb.cc
     rpc/ChessServiceImpl.cpp
     rpc/norpc.c
     rpc/rpc.cpp
@@ -46,13 +46,13 @@ add_custom_command(
 set_source_files_properties(
     rpc/chess_service.pb.cc
     PROPERTIES
-    OBJECT_DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/rpc/chess_service.pb.cc"
+    OBJECT_DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/rpc/chess_service.pb.cc;rpc/chess_service.pb.h"
     COMPILE_FLAGS "-I${CMAKE_CURRENT_BINARY_DIR} -I${CMAKE_CURRENT_SOURCE_DIR}"
 )
 set_source_files_properties(
     rpc/chess_service.grpc.pb.cc
     PROPERTIES
-    OBJECT_DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/rpc/chess_service.grpc.pb.cc"
+    OBJECT_DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/rpc/chess_service.grpc.pb.cc;rpc/chess_service.pb.h;rpc/chess_service.grpc.pb.h"
     COMPILE_FLAGS "-I${CMAKE_CURRENT_BINARY_DIR} -I${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
