@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "logic.h"
 
 board_t board;
@@ -28,6 +29,7 @@ void reset_board(void) {
     //defines each piece
     pRook.piece = pc_rook;
     pRook.color = cr_purple;
+    pRook.hasMoved = false;
 
     pKnight.piece = pc_knight;
     pKnight.color = cr_purple;
@@ -43,14 +45,17 @@ void reset_board(void) {
 
     pPawn.piece = pc_pawn;
     pPawn.color = cr_purple;
+    pPawn.hasMoved = false;
 
     empty.color = cr_none;
 
     wPawn.piece = pc_pawn;
     wPawn.color = cr_white;
+    wPawn.hasMoved = false;
 
     wRook.piece = pc_rook;
     wRook.color = cr_white;
+    wRook.hasMoved = false;
 
     wKnight.piece = pc_knight;
     wKnight.color = cr_white;
@@ -63,6 +68,7 @@ void reset_board(void) {
 
     wKing.piece = pc_king;
     wKing.color = cr_white;
+
 
     //Stores each piece in the correct place on the board
 
@@ -123,7 +129,7 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
             }
         }
 
-        if ((from.y-1) > 0){
+        if ((from.y-1) >= 0){
             for (int i = from.y-1; i < 8; --i){
                 //if occupied by friendly
                 if (board.pieces[from.y][from.x].color == board.pieces[i][from.x].color){
@@ -167,7 +173,7 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
             }
         }
 
-        if ((from.x-1) > 0){
+        if ((from.x-1) >= 0){
             for(int i = from.x-1; i < 8; --i){
                 //if place is occupied by friendly
                 if(board.pieces[from.y][from.x].color == board.pieces[from.y][i].color){
@@ -191,6 +197,184 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
     }
 
     // get moves for Knight
+    if (board.pieces[from.y][from.x].piece == pc_knight){
+        if (((from.y+2) < 8) && ((from.x-1) >= 0)){
+           /* //checks if enemy is there
+            if (!(board.pieces[from.y][from.x].color == board.pieces[from.y + 2][from.x - 1].color) && !(board.pieces[from.y + 2][from.x - 1].color == cr_none)){
+                tos[count].y = from.y + 2;
+                tos[count].x = from.x - 1;
+                ++count;
+            }
+            // if empty
+            else if (board.pieces[from.y + 2][from.x - 1].color == cr_none){
+                tos[count].y = from.y + 2;
+                tos[count].x = from.x - 1; 
+                ++count;
+            }
+        } /*/
+
+            if (board.pieces[from.y + 2][from.x - 1].color != board.pieces[from.y][from.x].color){
+                tos[count].y = from.y + 2;
+                tos[count].x = from.x - 1; 
+                ++count;
+            }
+        }
+        if (((from.y+2) < 8) && ((from.x+1) < 8)){
+            if (board.pieces[from.y + 2][from.x + 1].color != board.pieces[from.y][from.x].color){
+                tos[count].y = from.y + 2;
+                tos[count].x = from.x + 1; 
+                ++count;
+            }
+        }
+        if (((from.y-2) >= 0) && ((from.x-1) >= 0)){
+            if (board.pieces[from.y - 2][from.x - 1].color != board.pieces[from.y][from.x].color){
+                tos[count].y = from.y - 2;
+                tos[count].x = from.x - 1; 
+                ++count;
+            }
+        }
+        if (((from.y-2) >= 0) && ((from.x+1) < 8)){
+            if (board.pieces[from.y - 2][from.x + 1].color != board.pieces[from.y][from.x].color){
+                tos[count].y = from.y - 2;
+                tos[count].x = from.x + 1; 
+                ++count;
+            }
+        }
+        if (((from.y+1) < 8) && ((from.x-2) >= 0)){
+            if (board.pieces[from.y + 1][from.x - 2].color != board.pieces[from.y][from.x].color){
+                tos[count].y = from.y + 1;
+                tos[count].x = from.x - 2; 
+                ++count;
+            }
+        }
+        if (((from.y+1) < 8) && ((from.x+2) < 8)){
+            if (board.pieces[from.y + 1][from.x + 2].color != board.pieces[from.y][from.x].color){
+                tos[count].y = from.y + 1;
+                tos[count].x = from.x + 2; 
+                ++count;
+            }
+        }
+        if (((from.y-1) >= 0) && ((from.x-2) >= 0)){
+            if (board.pieces[from.y - 1][from.x - 2].color != board.pieces[from.y][from.x].color){
+                tos[count].y = from.y - 1;
+                tos[count].x = from.x - 2; 
+                ++count;
+            }
+        }
+        if (((from.y-1) >= 0) && ((from.x+2) < 8)){
+            if (board.pieces[from.y - 1][from.x + 2].color != board.pieces[from.y][from.x].color){
+                tos[count].y = from.y - 1;
+                tos[count].x = from.x + 2; 
+                ++count;
+            }
+        }
+    }
+
+    // Gets moves for purple pawns
+    if ((board.pieces[from.y][from.x].piece == pc_pawn) && (board.pieces[from.y][from.x].color == cr_purple)){
+         if((from.y+1) < 8){
+            if ((board.pieces[from.y + 1][from.x].color == cr_none)){
+                if (from.y + 1 == 7 ){
+
+                }
+                else{
+                    tos[count].x = from.x;
+                    tos[count].y = from.y + 1;
+                    ++count;
+                }
+            }
+        }
+        if (((from.x + 1) < 8) && ((from.y + 1) < 8)){
+            if (!(board.pieces[from.y][from.x].color == board.pieces[from.y+1][from.x+1].color) && !(board.pieces[from.y + 1][from.x + 1].color == cr_none)){
+                tos[count].x = from.x + 1;
+                tos[count].y = from.y + 1;
+                ++count;
+            }
+        }
+        if (((from.x - 1) < 8) && ((from.y + 1) < 8)){
+            if (!(board.pieces[from.y][from.x].color == board.pieces[from.y+1][from.x-1].color) && !(board.pieces[from.y + 1][from.x - 1].color == cr_none)){
+                tos[count].x = from.x - 1;
+                tos[count].y = from.y + 1;
+                ++count;
+            }
+        }
+        if ((board.pieces[from.y][from.x].hasMoved == false) && (board.pieces[from.y + 1][from.x].color == cr_none) && (board.pieces[from.y + 2][from.x].color == cr_none)){
+            tos[count].x = from.x;
+            tos[count].y = from.y + 2;
+            ++count;
+        }
+    }
+    // Gets moves for white pawns
+    if ((board.pieces[from.y][from.x].piece == pc_pawn) && (board.pieces[from.y][from.x].color == cr_white)){
+        
+        if((from.y-1) >= 0){
+            if ((board.pieces[from.y - 1][from.x].color == cr_none)){
+                if (from.y - 1 == 0){
+
+                }
+                else{
+                    tos[count].x = from.x;
+                    tos[count].y = from.y - 1;
+                    ++count;
+                }
+            }
+        }
+        if (((from.x + 1) < 8) && ((from.y - 1) < 8)){
+            if (!(board.pieces[from.y][from.x].color == board.pieces[from.y-1][from.x+1].color) && !(board.pieces[from.y - 1][from.x + 1].color == cr_none)){
+                tos[count].x = from.x + 1;
+                tos[count].y = from.y - 1;
+                ++count;
+            }
+        }
+        if (((from.x - 1) < 8) && ((from.y - 1) < 8)){
+            if (!(board.pieces[from.y][from.x].color == board.pieces[from.y-1][from.x-1].color) && !(board.pieces[from.y - 1][from.x - 1].color == cr_none)){
+                tos[count].x = from.x - 1;
+                tos[count].y = from.y - 1;
+                ++count;
+            }
+        }
+        if ((board.pieces[from.y][from.x].hasMoved == false) && (board.pieces[from.y - 1][from.x].color == cr_none) && (board.pieces[from.y - 2][from.x].color == cr_none)){
+            tos[count].x = from.x;
+            tos[count].y = from.y - 2;
+            ++count;
+        }
+    }
+
+    // Get Moves for Bishop
+    if (board.pieces[from.y][from.x].piece == pc_bishop){
+        int j;
+        int i;
+        int z;
+        for (i = 1, j = 1; (i < (8-from.x))  &&  (j < (8-from.y)); ++j, ++i){
+            if ( !(board.pieces[from.y + j][from.x + i].color == board.pieces[from.y][from.x].color)){
+                tos[count].x = from.x + i;
+                tos[count].y = from.y + j;
+                ++count;
+            }
+        }
+        for (i = 1, j = from.y; (i < (8-from.x))  &&  (j >= 0); --j, ++i){
+            if ( !(board.pieces[from.y - i][from.x + i].color == board.pieces[from.y][from.x].color)){
+                tos[count].x = from.x + i;
+                tos[count].y = from.y - i;
+                ++count;
+            }
+        }
+        for (i = from.x, j = 1; (i >= 0)  &&  (j < (8-from.y)); ++j, --i){
+            if ( !(board.pieces[from.y + j][from.x - j].color == board.pieces[from.y][from.x].color)){
+                tos[count].x = from.x - j;
+                tos[count].y = from.y + j;
+                ++count;
+            }
+        }
+        for (i = from.x, j = from.y, z = 1; (i >= 0)  &&  (j >= 0); --j, --i, ++z){
+            if ( !(board.pieces[from.y - z][from.x - z].color == board.pieces[from.y][from.x].color)){
+                tos[count].x = from.x - z;
+                tos[count].y = from.y - z;
+                ++count;
+            }
+        }
+    }
+    
     return count;
     // TODO
     // if (count + 1 < tos_count) {
