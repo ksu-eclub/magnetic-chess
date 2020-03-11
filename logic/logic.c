@@ -374,7 +374,7 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
             }
         }
     }
-    
+
     return count;
     // TODO
     // if (count + 1 < tos_count) {
@@ -389,7 +389,7 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
     // }
     // return count;
 }
-
+ //
 move_error_t move(coordinate_t from, coordinate_t to) {
     puts("move");
     if (board.pieces[to.y][to.x].color == board.pieces[from.y][from.x].color){
