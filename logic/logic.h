@@ -28,6 +28,7 @@ typedef struct {
     color_t color;
     piece_type_t piece;
     int num_moves;
+    bool hasMoved;
 } piece_t;
 
 typedef enum {
