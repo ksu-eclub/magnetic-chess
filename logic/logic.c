@@ -352,26 +352,192 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
                 ++count;
             }
         }
-        for (i = 1, j = from.y; (i < (8-from.x))  &&  (j >= 0); --j, ++i){
+        for (i = 1, j = from.y; (i < (8-from.x))  &&  (j > 0); --j, ++i){
             if ( !(board.pieces[from.y - i][from.x + i].color == board.pieces[from.y][from.x].color)){
                 tos[count].x = from.x + i;
                 tos[count].y = from.y - i;
                 ++count;
             }
         }
-        for (i = from.x, j = 1; (i >= 0)  &&  (j < (8-from.y)); ++j, --i){
+        for (i = from.x, j = 1; (i > 0)  &&  (j < (8-from.y)); ++j, --i){
             if ( !(board.pieces[from.y + j][from.x - j].color == board.pieces[from.y][from.x].color)){
                 tos[count].x = from.x - j;
                 tos[count].y = from.y + j;
                 ++count;
             }
         }
-        for (i = from.x, j = from.y, z = 1; (i >= 0)  &&  (j >= 0); --j, --i, ++z){
+        for (i = from.x, j = from.y, z = 1; (i > 0)  &&  (j > 0); --j, --i, ++z){
             if ( !(board.pieces[from.y - z][from.x - z].color == board.pieces[from.y][from.x].color)){
                 tos[count].x = from.x - z;
                 tos[count].y = from.y - z;
                 ++count;
             }
+        }
+    }
+
+    //get Moves for Queen
+    if (board.pieces[from.y][from.x].piece == pc_queen){
+        if ((from.y+1) < 8){
+            for (int i = from.y+1; i < 8; ++i){
+                //if occupied by friendly
+                if (board.pieces[from.y][from.x].color == board.pieces[i][from.x].color){
+                    break;
+                }
+                // if occupied by enemy
+                else if (!(board.pieces[from.y][from.x].color == board.pieces[i][from.x].color) && !(board.pieces[i][from.x].color == cr_none)){
+                    tos[count].y = i;
+                    tos[count].x = from.x;
+                    ++count;
+                    break;
+                }
+                // if empty
+                else{
+                    tos[count].y = i;
+                    tos[count].x = from.x; 
+                }
+                ++count;
+            }
+        }
+
+        if ((from.y-1) >= 0){
+            for (int i = from.y-1; i < 8; --i){
+                //if occupied by friendly
+                if (board.pieces[from.y][from.x].color == board.pieces[i][from.x].color){
+                    break;
+                }
+                // if occupied by enemy
+                else if (!(board.pieces[from.y][from.x].color == board.pieces[i][from.x].color) && !(board.pieces[i][from.x].color == cr_none)){
+                    tos[count].y = i;
+                    tos[count].x = from.x;
+                    ++count;
+                    break;
+                }
+                // if empty
+                else{
+                    tos[count].y = i;
+                    tos[count].x = from.x; 
+                }
+                ++count;
+            }
+        }
+
+        if ((from.x+1) < 8){
+            for(int i = from.x+1; i < 8; ++i){
+                // if occupied by friendly
+                if(board.pieces[from.y][from.x].color == board.pieces[from.y][i].color){
+                    break;
+                }
+                // if occupied by enemy
+                else if(!(board.pieces[from.y][from.x].color == board.pieces[from.y][i].color) && !(board.pieces[from.y][i].color == cr_none)){
+                    tos[count].y = from.y;
+                    tos[count].x = i;
+                    ++count;
+                    break;
+                }
+                //if empty
+                else{
+                    tos[count].y = from.y;
+                    tos[count].x = i;
+                }
+                ++count;
+            }
+        }
+
+        if ((from.x-1) >= 0){
+            for(int i = from.x-1; i < 8; --i){
+                //if place is occupied by friendly
+                if(board.pieces[from.y][from.x].color == board.pieces[from.y][i].color){
+                    break;
+                }
+                //if occupied by enemy
+                else if(!(board.pieces[from.y][from.x].color == board.pieces[from.y][i].color) && !(board.pieces[from.y][i].color == cr_none)){
+                    tos[count].y = from.y;
+                    tos[count].x = i;
+                    ++count;
+                    break;
+                }
+                // if empty
+                else{
+                    tos[count].y = from.y;
+                    tos[count].x = i;
+                }
+                ++count;
+            }
+        }
+        int j;
+        int i;
+        int z;
+        for (i = 1, j = 1; (i < (8-from.x))  &&  (j < (8-from.y)); ++j, ++i){
+            if ( !(board.pieces[from.y + j][from.x + i].color == board.pieces[from.y][from.x].color)){
+                tos[count].x = from.x + i;
+                tos[count].y = from.y + j;
+                ++count;
+            }
+        }
+        for (i = 1, j = from.y; (i < (8-from.x))  &&  (j > 0); --j, ++i){
+            if ( !(board.pieces[from.y - i][from.x + i].color == board.pieces[from.y][from.x].color)){
+                tos[count].x = from.x + i;
+                tos[count].y = from.y - i;
+                ++count;
+            }
+        }
+        for (i = from.x, j = 1; (i > 0)  &&  (j < (8-from.y)); ++j, --i){
+            if ( !(board.pieces[from.y + j][from.x - j].color == board.pieces[from.y][from.x].color)){
+                tos[count].x = from.x - j;
+                tos[count].y = from.y + j;
+                ++count;
+            }
+        }
+        for (i = from.x, j = from.y, z = 1; (i > 0)  &&  (j > 0); --j, --i, ++z){
+            if ( !(board.pieces[from.y - z][from.x - z].color == board.pieces[from.y][from.x].color)){
+                tos[count].x = from.x - z;
+                tos[count].y = from.y - z;
+                ++count;
+            }
+        }
+    }
+    
+    // Gets moves for King
+    if (board.pieces[from.y][from.x].piece == pc_king){
+        if (!(board.pieces[from.y][from.x].color == board.pieces[from.y][from.x+1].color)){
+            tos[count].x = from.x + 1;
+            tos[count].y = from.y;
+            ++count;
+        }
+        if (!(board.pieces[from.y][from.x].color == board.pieces[from.y+1][from.x].color)){
+            tos[count].x = from.x;
+            tos[count].y = from.y + 1;
+            ++count;
+        }
+        if (!(board.pieces[from.y][from.x].color == board.pieces[from.y][from.x-1].color)){
+            tos[count].x = from.x - 1;
+            tos[count].y = from.y;
+            ++count;
+        }
+        if (!(board.pieces[from.y][from.x].color == board.pieces[from.y-1][from.x].color)){
+            tos[count].x = from.x;
+            tos[count].y = from.y - 1;
+            ++count;
+        }
+        if (!(board.pieces[from.y][from.x].color == board.pieces[from.y+1][from.x+1].color)){
+            tos[count].x = from.x + 1;
+            tos[count].y = from.y + 1;
+            ++count;
+        }
+        if (!(board.pieces[from.y][from.x].color == board.pieces[from.y+1][from.x-1].color)){
+            tos[count].x = from.x - 1;
+            tos[count].y = from.y + 1;
+            ++count;
+        }
+        if (!(board.pieces[from.y][from.x].color == board.pieces[from.y-1][from.x+1].color)){
+            tos[count].x = from.x + 1;
+            tos[count].y = from.y - 1;
+            ++count;
+        }
+        if (!(board.pieces[from.y][from.x].color == board.pieces[from.y-1][from.x-1].color)){
+            tos[count].x = from.x - 1;
+            tos[count].y = from.y - 1;
+            ++count;
         }
     }
 
