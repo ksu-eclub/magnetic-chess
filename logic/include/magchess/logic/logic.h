@@ -1,5 +1,5 @@
-#ifndef LOGIC_H
-#define LOGIC_H
+#ifndef MAGCHESS_LOGIC_LOGIC_H
+#define MAGCHESS_LOGIC_LOGIC_H
 #ifdef __cplusplus
 extern "C" {
 #endif
