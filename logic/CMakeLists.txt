@@ -11,6 +11,7 @@ add_executable(magnetic-chess
     src/logic/real/logic-listener.c
     src/logic/real/logic.c
     src/ui/mock/ui.c
+    src/main.c
 )
 
 include_directories(
