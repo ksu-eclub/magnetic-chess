@@ -4,6 +4,7 @@
 extern "C" {
 #endif
 
+void ui_init(void);
 void ui_run(void);
 
 #ifdef __cplusplus

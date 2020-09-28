@@ -9,6 +9,7 @@
 #include <magchess/ui/ui.h>
 
 int main(int argc, const char **argv) {
+    ui_init();
     hw_leds_init();
     hw_magnet_init();
     hw_steppers_init();
