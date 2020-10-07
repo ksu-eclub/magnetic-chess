@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include <magchess/logic/logic.h>
+#include "logic.h"
 
 board_t board;
 

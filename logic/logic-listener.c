@@ -1,5 +1,5 @@
+#include "logic.h"
 #include <stdlib.h>
-#include <magchess/logic/logic.h>
 
 // TODO Define a list of {board_listener_t, context}
 
