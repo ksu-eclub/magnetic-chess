@@ -3,11 +3,55 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" href="magnetic-chess.css" />
+        <title>Magnetic Chess</title>
         <script src="rpc-gen.js"></script>
         <script src="rpc.js"></script>
         <script src="magnetic-chess.js" defer></script>
     </head>
     <body>
-        <div id="debug"></div>
+        
+        <!--- HTML modals will go here (about, settings, quit game, etc.) -->
+
+        <div id="canvas">
+            <!--- Menu bar -->
+            <div id="menu-bar" class="menubar">
+                <div id="leftnav">    
+                    <h3 class="white">KSU Magnetic Chess&nbsp;
+                        <a class="white" href="#" onclick="notImplemented()">Stop Game</a>&nbsp;
+                        <a class="white" href="#" onclick="notImplemented()">Settings</a>&nbsp;
+                        <a class="white" href="#" onclick="getAbout()">About</a>
+                    </h3>
+                </div>
+                <div id="rightnav">
+                    <!--- Currently unused -->
+                </div>
+            </div>
+                <div id="main" class="row">
+                    <!--- Input area -->
+                    <div id="entry" class="column">
+                        <h4>Move Pawn</h4>
+                        <label for="x-input">X-coordinate</label>
+                        <br>
+                        <input type="text" id="x-input">
+                        <br>
+                        <label for="y-input">Y-coordinate</label>
+                        <br>
+                        <input type="text" id="y-input">
+                        <br>
+                        <br>
+                        <input value="Move" type="button" onclick="movePawn()"/>
+                        <p>It is strongly recommended that you run this page at 800x480 resolution with Chrome Developer Tools, otherwise the chesspiece coordinates will not line up properly.</p>
+                        <p>Use the coordinates listed on the side of the chessboard for reference when moving a piece.</p>
+                    </div>
+                    <!--- Chessboard and associated pieces -->
+                    <div id="chessboard" class="column">
+                        <object type="image/svg+xml" data="resources/board.svg"></object>
+                        <br>
+                        <a href="#" class="pawn" id="pawn1" onclick="notImplemented()"><object class="svg-click" type="image/svg+xml" data="resources/pawn_black.svg"></object></a>
+                    </div>
+                </div>
+            <!--- Container for debugging and status information -->
+            <div id="debug" class="footer"></div>
+        </div>
     </body>
 </html>

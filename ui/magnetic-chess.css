@@ -1,3 +1,82 @@
+/* Individual elements */
+
 #debug {
     color: #7F0000;
 }
+
+#canvas {
+    font-family: sans-serif;
+}
+
+#main {
+    height: "90%";
+}
+
+#chessboard {
+    align-content: center;
+
+}
+
+#entry {
+    align-content: center;
+
+}
+
+#leftnav {
+    text-align: left;
+}
+
+#rightnav {
+    text-align: right;
+}
+
+#pawn1 {
+    position: absolute;
+    top: 80%;
+    right: 40.8%;
+}
+
+/* Classes -- styling and fixes */
+
+.white {
+    color: #ffffff;
+}
+
+.svg-click {
+    pointer-events: none;
+}
+
+/* Layout -- columns and rows */
+
+* {
+    box-sizing: border-box;
+}
+
+.menubar {
+    background-color: #680197;
+    padding: 10px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
