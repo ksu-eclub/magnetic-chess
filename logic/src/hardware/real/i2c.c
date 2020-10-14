@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
-#include "i2c.h"
+#include <magchess/hardware/i2c.h>
 
 #define I2C_DEVNAME "/dev/i2c-1"
 

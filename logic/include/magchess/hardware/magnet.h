@@ -1,5 +1,5 @@
-#ifndef HARDWARE_MAGNET_H
-#define HARDWARE_MAGNET_H
+#ifndef MAGCHESS_HARDWARE_MAGNET_H
+#define MAGCHESS_HARDWARE_MAGNET_H
 
 typedef enum {
     ms_off,
