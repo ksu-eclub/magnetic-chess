@@ -1,8 +1,7 @@
 #ifndef MAGCHESS_LOGIC_LOGIC_H
 #define MAGCHESS_LOGIC_LOGIC_H
-#ifdef __cplusplus
-extern "C" {
-#endif
+
+#include <stdbool.h>
 
 typedef struct {
     int x;
@@ -70,7 +69,4 @@ void on_selection(color_t turn, state_t state, coordinate_t coord);
 void add_selection_listener(selection_listener_t listener, void *context, void **ref);
 void remove_selection_listener(void *ref);
 
-#ifdef __cplusplus
-}
-#endif
 #endif
