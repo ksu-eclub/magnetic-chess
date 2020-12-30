@@ -9,8 +9,8 @@
         "email": "zachdeibert@gmail.com"
     },
     "scripts": {
-        "prebuild": "protoc -I=../../logic/rpc ../../logic/rpc/chess_service.proto --js_out=import_style=commonjs:.",
-        "build": "protoc -I=../../logic/rpc ../../logic/rpc/chess_service.proto --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.",
+        "prebuild": "protoc -I=../../logic/src/ui/real chess_service.proto --js_out=import_style=commonjs:.",
+        "build": "protoc -I=../../logic/src/ui/real chess_service.proto --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.",
         "postbuild": "webpack client.js"
     },
     "devDependencies": {
