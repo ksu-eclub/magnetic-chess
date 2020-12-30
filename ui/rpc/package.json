@@ -14,12 +14,12 @@
         "postbuild": "webpack client.js"
     },
     "devDependencies": {
-        "webpack": "^4.42.1",
-        "webpack-cli": "^3.3.11",
-        "browserify": "^16.5.1"
+        "webpack": "^5.11.1",
+        "webpack-cli": "^4.3.0",
+        "browserify": "^17.0.0"
     },
     "dependencies": {
-        "google-protobuf": "^3.11.4",
-        "grpc-web": "^1.0.7"
+        "google-protobuf": "^3.14.0",
+        "grpc-web": "^1.2.1"
     }
 }
