@@ -21,6 +21,55 @@ piece_t wBishop;
 piece_t wQueen;
 piece_t wKing;
 
+void board_Converter ( board_t board, char *newBoard){
+    int count = 0;
+    for (int i = 7; i >= 0; i--){
+        for (int j = 7; j >= 0; j--){
+            if ((board.pieces[i][j].piece == pc_rook) && (board.pieces[i][j].color == cr_white)){
+                newBoard[count] = 'R';
+            }
+            if ((board.pieces[i][j].piece == pc_rook) && (board.pieces[i][j].color == cr_purple)){
+                newBoard[count] = 'r';
+            }
+            if ((board.pieces[i][j].piece == pc_knight) && (board.pieces[i][j].color == cr_white)){
+                newBoard[count] = 'N';
+            }
+            if ((board.pieces[i][j].piece == pc_knight) && (board.pieces[i][j].color == cr_purple)){
+                newBoard[count] = 'n';
+            }
+            if ((board.pieces[i][j].piece == pc_bishop) && (board.pieces[i][j].color == cr_white)){
+                newBoard[count] = 'B';
+            }
+            if ((board.pieces[i][j].piece == pc_bishop) && (board.pieces[i][j].color == cr_purple)){
+                newBoard[count] = 'b';
+            } 
+            if ((board.pieces[i][j].piece == pc_king) && (board.pieces[i][j].color == cr_white)){
+                newBoard[count] = 'K';
+            }
+            if ((board.pieces[i][j].piece == pc_king) && (board.pieces[i][j].color == cr_purple)){
+                newBoard[count] = 'k';
+            }
+            if ((board.pieces[i][j].piece == pc_queen) && (board.pieces[i][j].color == cr_white)){
+                newBoard[count] = 'Q';
+            }
+            if ((board.pieces[i][j].piece == pc_queen) && (board.pieces[i][j].color == cr_purple)){
+                newBoard[count] = 'q';
+            }
+            if ((board.pieces[i][j].piece == pc_pawn) && (board.pieces[i][j].color == cr_white)){
+                newBoard[count] = 'P';
+            }
+            if ((board.pieces[i][j].piece == pc_pawn) && (board.pieces[i][j].color == cr_purple)){
+                newBoard[count] = 'p';
+            }
+            if (board.pieces[i][j].piece == pc_empty){
+                newBoard[count] = '-';
+            }
+            count++;
+
+        }
+    }
+}
+
 
 
 void reset_board(void) {
@@ -48,6 +97,7 @@ void reset_board(void) {
     pPawn.hasMoved = false;
 
     empty.color = cr_none;
+    empty.piece = pc_empty;
 
     wPawn.piece = pc_pawn;
     wPawn.color = cr_white;
@@ -72,14 +122,14 @@ void reset_board(void) {
 
     //Stores each piece in the correct place on the board
 
-    board.pieces[0][0] = pRook;
-    board.pieces[0][1] = pKnight;
-    board.pieces[0][2] = pBishop;
-    board.pieces[0][3] = pKing;
-    board.pieces[0][4] = pQueen;
-    board.pieces[0][5] = pBishop;
-    board.pieces[0][6] = pKnight;
-    board.pieces[0][7] = pRook;
+    board.pieces[0][0] = wRook;
+    board.pieces[0][1] = wKnight;
+    board.pieces[0][2] = wBishop;
+    board.pieces[0][3] = wKing;
+    board.pieces[0][4] = wQueen;
+    board.pieces[0][5] = wBishop;
+    board.pieces[0][6] = wKnight;
+    board.pieces[0][7] = wRook;
     for (int i = 0; i < 8; ++i){
         board.pieces[1][i] = pPawn;
     }
@@ -99,11 +149,17 @@ void reset_board(void) {
     board.pieces[7][5] = pBishop;
     board.pieces[7][6] = pKnight;
     board.pieces[7][7] = pRook;
+
+    char convertedBoard [64];
+    board_Converter (board, convertedBoard);
+    on_change(board.turn, board.state, convertedBoard);
 }
 
 int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
     puts("get_moves");
     int count = 0;
+
+    on_selection(board.turn, board.state, from);
     
     // gets moves for rook
     if (board.pieces[from.y][from.x].piece == pc_rook){
@@ -194,6 +250,7 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
                 ++count;
             }
         }
+        //tos_count = count;
     }
 
     // get moves for Knight
@@ -270,8 +327,8 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
         }
     }
 
-    // Gets moves for purple pawns
-    if ((board.pieces[from.y][from.x].piece == pc_pawn) && (board.pieces[from.y][from.x].color == cr_purple)){
+    // Gets moves for white pawns
+    if ((board.pieces[from.y][from.x].piece == pc_pawn) && (board.pieces[from.y][from.x].color == cr_white)){
          if((from.y+1) < 8){
             if ((board.pieces[from.y + 1][from.x].color == cr_none)){
                 if (from.y + 1 == 7 ){
@@ -304,8 +361,8 @@ int get_moves(coordinate_t from, coordinate_t *tos, int tos_count) {
             ++count;
         }
     }
-    // Gets moves for white pawns
-    if ((board.pieces[from.y][from.x].piece == pc_pawn) && (board.pieces[from.y][from.x].color == cr_white)){
+    // Gets moves for purple pawns
+    if ((board.pieces[from.y][from.x].piece == pc_pawn) && (board.pieces[from.y][from.x].color == cr_purple)){
         
         if((from.y-1) >= 0){
             if ((board.pieces[from.y - 1][from.x].color == cr_none)){
@@ -573,3 +630,4 @@ restore_error_t restore(piece_type_t type) {
     // TODO 
     return re_none;
 }
+
